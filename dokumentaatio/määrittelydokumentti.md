@@ -7,3 +7,6 @@ Ohjelma saa syötteenä vastustajan siirron ja ottaa niitä talteen rajallisen m
 Ainakin edellisiä siirtoja sisältävästä taulukoista kuvioita etsiessäni joudun käyttämään jonkinlaista merkkijonohakualgoritmia, jonka aikavaativuus on pahimmassa tapauksessa luokkaa O(k), jossa k=taulukon koko. Pidän taulukon koon kuitenkin pienenä, sillä tarkoitus on päätellä minkälaisella taktiikalla pelaaja sillä hetkellä pelaa. Muuten ohjelman suorituksen aikavaativuus pitäisi pysyä vakiona.
 Tilavaativuus on luokkaa O(k), koska muuttujia on kiinteä määrä, mutta listan koko vaikuttaa tilavaativuuteen.
 
+Lähteet:
+https://en.wikipedia.org/wiki/String_searching_algorithm
+https://www.cs.helsinki.fi/u/jkivinen/opetus/tira/k08/viikko02.pdf
