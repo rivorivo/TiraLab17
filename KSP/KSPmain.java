@@ -5,14 +5,16 @@ public class KSPmain{
 	
 	public static void main(String []args){
 		Scanner konsoli = new Scanner(System.in);
-			String siirto="";	
-		Tekoaly kone = new Tekoaly();		
-
+		String siirto="";
+		Tuloslista tuloslista = new Tuloslista(99);	
+		Tekoaly kone = new Tekoaly(tuloslista);		
+							
 		while(true){
 			/*
 			*Ihmispelaajan siirron kysyminen
 			*@param siirto	tallettaa pelaajan siirron		
 			*/ 
+			
 			while(true){
 				System.out.println("Pelaa uusi peli painamalla 'Enter'");
 				if(konsoli.nextLine().equals("")){break;}
@@ -44,33 +46,34 @@ public class KSPmain{
 			System.out.println(siirto+" - "+konesiirto);
 			System.out.println("");				
 			if(siirto.equals(konesiirto)){
-			kone.lisaaTulos("tasan",siirto,konesiirto);
+			tuloslista.lisaaPeli("tasapeli",siirto);
 			System.out.println("Sama siirto! Tasapeli.");		
 			} else if(siirto.equals("Kivi")){
 				if(konesiirto.equals("Sakset")){
-					kone.lisaaTulos("pelaaja",siirto,konesiirto);
+					tuloslista.lisaaPeli("pelaaja",siirto);
 					System.out.println("Kivi murskaa sakset! Voitit!");
 				}else if(konesiirto.equals("Paperi")){
-					kone.lisaaTulos("kone",siirto,konesiirto);
+					tuloslista.lisaaPeli("kone",siirto);
 					System.out.println("Paperi peittää kiven! Hävisit.");
 				}
 			} else if(siirto.equals("Sakset")){
 				if(konesiirto.equals("Kivi")){
-					kone.lisaaTulos("kone",siirto,konesiirto);
+					tuloslista.lisaaPeli("kone",siirto);
 					System.out.println("Kivi murskaa sakset! Hävisit.");
 				}else if(konesiirto.equals("Paperi")){
-					kone.lisaaTulos("pelaaja",siirto,konesiirto);
+					tuloslista.lisaaPeli("pelaaja",siirto);
 					System.out.println("Sakset leikkaavat paperin! Voitit!");
 				}
 			} else if(siirto.equals("Paperi")){
 				if(konesiirto.equals("Kivi")){
-					kone.lisaaTulos("pelaaja",siirto,konesiirto);
+					tuloslista.lisaaPeli("pelaaja",siirto);
 					System.out.println("Paperi peittää kiven! Voitit!");			
 				}else if(konesiirto.equals("Sakset")){
-					kone.lisaaTulos("kone",siirto,konesiirto);
+					tuloslista.lisaaPeli("kone",siirto);
 					System.out.println("Sakset leikkaavat paperin! Hävisit.");
 				}
 			}
+			kone.paivita(tuloslista);
 			System.out.println("");
 			System.out.println("Voitot: Sinä: "+kone.getVoitot()+" Kone: "+kone.getKonevoitot()+" Tasapelit: "+kone.getTasapelit());
 		}
