@@ -5,17 +5,43 @@ public class Tekoaly{
 	*/
 	private String konesiirto="Paperi";	
 	private Tuloslista pelit;
-	private String taktiikka = "menestynein";
+	private String taktiikka = "vastustajan paras";
 	
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
 	}
 
 	public String getSiirto(){
+		if (pelit.size() % 2 == 0){
+			vaihdaTaktiikka();
+		}
 		if(taktiikka.equals("menestynein")){
 			konesiirto = menestyksenPerusteella();
 		}
+		if(taktiikka.equals("vastustajan paras")){
+			konesiirto = vastustajanParas();
+		}
+		
 		return konesiirto;	
+	}
+	public String vastustajanParas(){
+		String paras = menestyksenPerusteella();
+		if(paras.equals("Paperi")){
+			paras = "Sakset";
+		}else if(paras.equals("Sakset")){
+			paras = "Kivi";
+		}else if(paras.equals("Kivi")){
+			paras = "Paperi";
+		}
+		return paras;
+	}
+	
+	public void vaihdaTaktiikka(){
+		if(taktiikka.equals("vastustajan paras")){
+			taktiikka = "menestynein";
+		}else if(taktiikka.equals("menestynein")){
+			taktiikka = "vastustajan paras";
+		}
 	}
 	
 	public String menestyksenPerusteella(){
