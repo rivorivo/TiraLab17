@@ -7,10 +7,17 @@ public class Tekoaly{
 	private Tuloslista pelit;
 	private String taktiikka = "vastustajan paras";
 	
+	/*
+	*Konstruktori
+	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
 	}
 
+	/*
+	*Metodi, joka antaa siirron riippuen taktiikasta 
+	* ja vaihtaa taktiikkaa, jos siltä tuntuu
+	*/
 	public String getSiirto(){
 		if (pelit.size() % 2 == 0){
 			vaihdaTaktiikka();
@@ -35,7 +42,9 @@ public class Tekoaly{
 		}
 		return paras;
 	}
-	
+		/*
+	*Yksinkertainen taktiikan vaihto
+	*/
 	public void vaihdaTaktiikka(){
 		if(taktiikka.equals("vastustajan paras")){
 			taktiikka = "menestynein";
@@ -43,19 +52,23 @@ public class Tekoaly{
 			taktiikka = "vastustajan paras";
 		}
 	}
-	
+		/*
+	*Metodi, joka valitsee siirroksi tähän asti parhaiten menestyneen siirron
+	*/
 	public String menestyksenPerusteella(){
 		int kivet=0;
 		int sakset=0;
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
-			if(pelit.getSiirto(i).equals("Kivi")){
-				kivet = laske(kivet,i);
-			}else if(pelit.getSiirto(i).equals("Sakset")){
-				sakset = laske(sakset,i);
-			}else if(pelit.getSiirto(i).equals("Paperi")){
-				paperit=laske(paperit,i);
+			if(pelit.getVoittaja(i).equals("kone")){
+				if(pelit.getSiirto(i).equals("Kivi")){
+					kivet++;
+				}else if(pelit.getSiirto(i).equals("Sakset")){
+					sakset++;
+				}else if(pelit.getSiirto(i).equals("Paperi")){
+					paperit++;
+				}
 			}
 		}
 		if(kivet>paperit){
@@ -66,21 +79,16 @@ public class Tekoaly{
 		}
 		return isoin;
 	}
-	
-	private int laske(int l, int m){
-		if(pelit.getVoittaja(m).equals("kone")){
-			l--;
-		}else if(pelit.getVoittaja(m).equals("tasapeli")){
-		}else{
-			l++;
-		}
-		return l;
-	}
-	
+
+		/*
+	*päivittää pelin (ei mahdollisesti enää tarvita)
+	*/
 	public void paivita(Tuloslista lista){
 		pelit=lista;
 	}
-	
+		/*
+	*Laskee voittojen määrän tuloslistasta
+	*/
 	public int getVoitot(){
 		int voitot=0;
 		for(int i=0; i<pelit.size(); i++){

@@ -1,4 +1,3 @@
-	
 public class Tuloslista{
 
 	private String[] siirrot;
