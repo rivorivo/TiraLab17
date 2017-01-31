@@ -1,3 +1,4 @@
+package KSPapp;
 public class Tekoaly{
 
 	/*

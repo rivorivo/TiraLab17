@@ -1,3 +1,4 @@
+package KSPapp;
 import java.util.Scanner;
 /*käyttöliittymä, joka kysyy siirron ja ilmoittaa lopputuloksen
 */
