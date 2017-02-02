@@ -28,10 +28,10 @@ public class TekoalyTest{
 		lista.lisaaPeli("pelaaja", "Sakset");
 		lista.lisaaPeli("pelaaja", "Kivi");
 		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("kone", "Sakset");
 		lista.lisaaPeli("pelaaja", "Paperi");
 		String paras = aly.vastustajanParas();
-		Assert.assertEquals("Sakset",paras);
+		Assert.assertEquals("Paperi",paras);
 	}
 	
 	@Test

@@ -29,7 +29,7 @@ public class KSPmain{
 				if(siirto.equalsIgnoreCase("K")){siirto="Kivi";break;}
 				if(siirto.equalsIgnoreCase("S")){siirto="Sakset";break;}
 				if(siirto.equalsIgnoreCase("P")){siirto="Paperi";break;}
-				System.out.println("Valitse 'K','S' tai 'P'");			
+				System.out.println("Valitse 'k','s' tai 'p'");			
 			}
 			/*
 			*Tähän väliin tekoälyltä siirron kysyminen

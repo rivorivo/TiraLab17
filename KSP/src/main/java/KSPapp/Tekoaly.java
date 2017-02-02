@@ -6,7 +6,7 @@ public class Tekoaly{
 	*/
 	private String konesiirto="Paperi";	
 	private Tuloslista pelit;
-	private String taktiikka = "vastustajan paras";
+	private String taktiikka = "menestynein";
 	
 	/*
 	*Konstruktori
@@ -20,39 +20,20 @@ public class Tekoaly{
 	* ja vaihtaa taktiikkaa, jos siltä tuntuu
 	*/
 	public String getSiirto(){
-		if (pelit.size() % 2 == 0){
-			vaihdaTaktiikka();
-		}
-		if(taktiikka.equals("menestynein")){
+		
+		if (pelit.size() > 2){
+			konesiirto = toistuvatKuviot();
+		}else if(taktiikka.equals("menestynein")){
 			konesiirto = menestyksenPerusteella();
-		}
-		if(taktiikka.equals("vastustajan paras")){
+		}else if(taktiikka.equals("vastustajan paras")){
 			konesiirto = vastustajanParas();
+		}else if(taktiikka.equals("toistuvatKuviot")){
+			konesiirto = toistuvatKuviot();
 		}
 		
 		return konesiirto;	
 	}
-	public String vastustajanParas(){
-		String paras = menestyksenPerusteella();
-		if(paras.equals("Paperi")){
-			paras = "Sakset";
-		}else if(paras.equals("Sakset")){
-			paras = "Kivi";
-		}else if(paras.equals("Kivi")){
-			paras = "Paperi";
-		}
-		return paras;
-	}
-		/*
-	*Yksinkertainen taktiikan vaihto
-	*/
-	public void vaihdaTaktiikka(){
-		if(taktiikka.equals("vastustajan paras")){
-			taktiikka = "menestynein";
-		}else if(taktiikka.equals("menestynein")){
-			taktiikka = "vastustajan paras";
-		}
-	}
+	
 		/*
 	*Metodi, joka valitsee siirroksi tähän asti parhaiten menestyneen siirron
 	*/
@@ -80,6 +61,70 @@ public class Tekoaly{
 		}
 		return isoin;
 	}
+	/*
+	*Taktiikkaa, joka pelaa vastustajan menestyneimmällä
+	*/
+	public String vastustajanParas(){
+		int kivet=0;
+		int sakset=0;
+		int paperit=0;
+		String isoin = "Paperi";
+		for(int i=0; i<pelit.size(); i++){
+			if(pelit.getVoittaja(i).equals("pelaaja")){
+				if(pelit.getSiirto(i).equals("Kivi")){
+					kivet++;
+				}else if(pelit.getSiirto(i).equals("Sakset")){
+					sakset++;
+				}else if(pelit.getSiirto(i).equals("Paperi")){
+					paperit++;
+				}
+			}
+		}
+		if(kivet>paperit){
+			isoin = "Kivi";
+			paperit=kivet;
+		}if(sakset>paperit){
+			isoin = "Sakset";
+		}
+		return isoin;
+	}
+
+	public String toistuvatKuviot(){
+		int[][] kuviotA = pelit.getKuvioA();
+		int[][] kuviotB = pelit.getKuvioB();
+			System.out.println("mones: "+pelit.size());
+		String e=pelit.getSiirto(pelit.size()-2);
+		String t=pelit.getSiirto(pelit.size()-1);
+		int eka=pelit.muutaNumeroiksi(e);
+		int toka=pelit.muutaNumeroiksi(t);
+			System.out.print("eka:"+eka+" toka:"+toka);
+			int alku = 0;
+			int i=0;
+		for (int[] rivi: kuviotA) {
+			if (rivi[0]==eka&&rivi[1]==toka){
+					alku = i;
+					break;
+				}
+			i++;
+		}
+
+		System.out.println("alku: "+alku);
+		int paras= 0;
+
+		for (int j = 0; j<3; j++) {
+			if(kuviotB[alku][j]>paras){
+				System.out.println(kuviotB[alku][j]);
+				paras=j;
+			}
+		}
+		System.out.println(paras);
+		System.out.println(muutaSanaksi(paras));
+		System.out.println(pelaaVastaan(muutaSanaksi(paras)));
+
+
+		return pelaaVastaan(muutaSanaksi(paras));
+
+	}
 
 		/*
 	*päivittää pelin (ei mahdollisesti enää tarvita)
@@ -87,7 +132,30 @@ public class Tekoaly{
 	public void paivita(Tuloslista lista){
 		pelit=lista;
 	}
+
+	public String muutaSanaksi(int num){
+		String sana ="Kivi";
+		if (num==1){
+			sana="Sakset";
+		}else if(num==2){;
+			sana="Paperi";
+		}
+		return sana;
+	}
+
+	public String pelaaVastaan(String siirto){
+
+		if(siirto.equals("Paperi")){
+			siirto = "Sakset";
+		}else if(siirto.equals("Sakset")){
+			siirto = "Kivi";
+		}else if(siirto.equals("Kivi")){
+			siirto = "Paperi";
+		}
+		return siirto;
+	}
 		/*
+	}
 	*Laskee voittojen määrän tuloslistasta
 	*/
 	public int getVoitot(){
