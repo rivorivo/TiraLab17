@@ -70,6 +70,7 @@ public class Tekoaly{
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
+
 			if(pelit.getVoittaja(i).equals("pelaaja")){
 				if(pelit.getSiirto(i).equals("Kivi")){
 					kivet++;
@@ -110,16 +111,15 @@ public class Tekoaly{
 
 		System.out.println("alku: "+alku);
 		int paras= 0;
+		int isoin= 0;
 
 		for (int j = 0; j<3; j++) {
-			if(kuviotB[alku][j]>paras){
-				System.out.println(kuviotB[alku][j]);
+			int maara =kuviotB[alku][j];
+			if(maara>isoin){
+				isoin=maara;
 				paras=j;
 			}
 		}
-		System.out.println(paras);
-		System.out.println(muutaSanaksi(paras));
-		System.out.println(pelaaVastaan(muutaSanaksi(paras)));
 
 
 		return pelaaVastaan(muutaSanaksi(paras));
