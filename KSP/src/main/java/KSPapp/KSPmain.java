@@ -43,7 +43,6 @@ public class KSPmain{
 			*ja konepelaajalle
 			*/
 			System.out.println("");
-			//System.out.println("Siirtosi -"+"  Koneen siirto");
 			System.out.println(siirto+" - "+konesiirto);
 			System.out.println("");				
 			if(siirto.equals(konesiirto)){
@@ -74,7 +73,6 @@ public class KSPmain{
 					System.out.println("Sakset leikkaavat paperin! Hävisit.");
 				}
 			}
-			kone.paivita(tuloslista);
 			System.out.println("");
 			System.out.println("Voitot: Sinä: "+kone.getVoitot()+" Kone: "+kone.getKonevoitot()+" Tasapelit: "+kone.getTasapelit());
 		}

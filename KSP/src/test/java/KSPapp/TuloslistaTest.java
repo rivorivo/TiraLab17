@@ -24,4 +24,16 @@ public class TuloslistaTest{
 		int peleja = lista.size();
 		Assert.assertEquals(5,peleja);
 	}
+	
+	
+	@Test
+	public void tallettaaKuvion(){
+		lista.lisaaPeli("Pelaaja", "Sakset");
+		lista.lisaaPeli("Kone", "Sakset");
+		lista.lisaaPeli("Pelaaja", "Kivi");
+		int[][] b = lista.getKuvioB();
+		Assert.assertEquals(1, b[4][0]);
+	}
+	
+	
 }

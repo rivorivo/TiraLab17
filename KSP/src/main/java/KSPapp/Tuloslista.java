@@ -40,7 +40,7 @@ public class Tuloslista{
 	}
 
 	public void talletaKuvio(){
-		if (mones>2){
+		if (mones>1){
 			int i = 0;
 			int eka =muutaNumeroiksi(siirrot[mones-2]);
 			int toka=muutaNumeroiksi(siirrot[mones-1]);

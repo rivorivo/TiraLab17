@@ -18,9 +18,10 @@ public class TekoalyTest{
 		lista.lisaaPeli("pelaaja", "Sakset");
 		lista.lisaaPeli("pelaaja", "Kivi");
 		lista.lisaaPeli("kone", "Paperi");
+		lista.lisaaPeli("kone", "Kivi");
 		lista.lisaaPeli("pelaaja", "Sakset");
 		String menestynein = aly.menestyksenPerusteella();
-		Assert.assertEquals("Paperi",menestynein);
+		Assert.assertEquals("Kivi",menestynein);
 	}
 	
 	@Test
@@ -48,4 +49,56 @@ public class TekoalyTest{
 		Assert.assertEquals(2, aly.getTasapelit());
 		
 	}
+	
+	@Test
+	public void tunnistaaKuvion(){
+		
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja","Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja","Kivi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		Assert.assertEquals("Kivi",aly.toistuvatKuviot());
+		
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja","Paperi");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		Assert.assertEquals("Paperi",aly.toistuvatKuviot());
+		
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset");
+		Assert.assertEquals("Sakset",aly.toistuvatKuviot());
+		
+	}
+	@Test
+	public void pelaaVastaan(){
+		Assert.assertEquals("Kivi",aly.pelaaVastaan("Sakset"));
+		Assert.assertEquals("Sakset",aly.pelaaVastaan("Paperi"));
+		Assert.assertEquals("Paperi",aly.pelaaVastaan("Kivi"));
+	}
+		@Test
+	public void muuttuuSanaksiOikein(){
+		Assert.assertEquals("Kivi",aly.muutaSanaksi(0));
+		Assert.assertEquals("Sakset",aly.muutaSanaksi(1));
+		Assert.assertEquals("Paperi",aly.muutaSanaksi(2));
+	}
+	
+	
 }
