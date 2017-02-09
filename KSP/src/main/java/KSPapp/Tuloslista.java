@@ -12,7 +12,11 @@ public class Tuloslista{
 	 	this.voittajat = new String[koko];
 		this.kuviotB = new int[9][koko];
 	}
-	
+	/*
+	*Lisää pelin voittajan @param String voittaja
+	*ja ihmispelaajan tekemän siirron @param String siirto
+	*listaan ja kutsuu samalla talletaKuvio()-metodia
+	*/
 	public void lisaaPeli(String voittaja,String siirto){
 		voittajat[mones]=voittaja;
 		siirrot[mones]=siirto;
@@ -39,6 +43,11 @@ public class Tuloslista{
 			return numero;
 	}
 
+	/*
+	*Hakee listasta vastustajan kahden edellisen kierroksen siirrot
+	*ja hakee niille kuviotA-listasta indeksin. Tallettaa indeksin ja
+	*lisää viimeisen siirron mukaiseen sarakkeeseen +1.
+	*/
 	public void talletaKuvio(){
 		if (mones>1){
 			int i = 0;

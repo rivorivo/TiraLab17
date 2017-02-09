@@ -21,10 +21,13 @@ public class Tekoaly{
 	*/
 	public String getSiirto(){
 		
-		if (pelit.size() > 8){
+		if (pelit.size() > 9){
 			konesiirto = toistuvatKuviot();
 		}else if(taktiikka.equals("menestynein")){
 			konesiirto = menestyksenPerusteella();
+			if(pelit.size() > 4){
+				vaihdaTaktiikka("vastustajan paras");
+			}
 		}else if(taktiikka.equals("vastustajan paras")){
 			konesiirto = vastustajanParas();
 		}else if(taktiikka.equals("toistuvat kuviot")){
@@ -38,7 +41,7 @@ public class Tekoaly{
 		taktiikka=uusi;
 	}
 	
-		/*
+	/*
 	*Metodi, joka valitsee siirroksi tähän asti koneen parhaiten 
 	* menestyneen siirron, ottaen huomioon voitot ja häviöt
 	*/
@@ -105,7 +108,15 @@ public class Tekoaly{
 
 	/*
 	*Käy läpi vastustajan edellisiä siirtoja ja etsii niistä kolmen
-	*siirron pituisia toistuvia kuvioita
+	*siirron pituisia toistuvia kuvioita.
+	*Algoritmin on tarkoitus jäljitellä perinteistä tekoälyn päätöksentekomallia
+	*ja on ikäänkuin yksinkertaista peliä varten yksinkertaistettu Markovin 
+	*päätöksentekoprosessin versio.
+	*int alku voidaan ajatella tilana, jonka voimassa ollessa kolmella eri valintavaihtoehdolla
+	*on eri todennäköisyydet johtaa positiiviseen palkintoon. Todenäköisyys vain lasketaan prosenttien
+	*sijaan kokonaislukujen summana ja palkinto on binäärinen häviö/voitto. Todennäköisenä vastustajan
+	*siirtona pidetään aikaisemmin saman tilan voimassa olessa useiten käytettyä siirtoa ja siirroksi
+	*valikoituu sen voittava siirto.
 	*/
 	public String toistuvatKuviot(){
 		int[][] kuviotA = pelit.getKuvioA();
@@ -152,7 +163,9 @@ public class Tekoaly{
 		return sana;
 	}
 	/*
-	*Palauttaa siirron, joka voittaa parametrina 'siirto' annetun siirron.
+	*Palauttaa siirron, joka voittaa parametrina 
+	*@param siirto 
+	*annetun siirron.
 	*/
 	public String pelaaVastaan(String siirto){
 
@@ -207,6 +220,16 @@ public class Tekoaly{
 			}
 		}
 		return tasapelit;	
+	}
+
+	public String kokoPelinVoittaja(){
+		 
+		if(getVoitot()<getKonevoitot()){
+			return "Kone voitti pelin!";
+		}else if(getVoitot()>getKonevoitot()){
+			return "Sinä voitit pelin!";
+		}
+		return "Tasapeli!";
 	}
 
 }

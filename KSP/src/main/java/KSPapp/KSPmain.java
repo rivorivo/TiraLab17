@@ -1,5 +1,6 @@
 package KSPapp;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 /*käyttöliittymä, joka kysyy siirron ja ilmoittaa lopputuloksen
 */
 public class KSPmain{
@@ -7,10 +8,27 @@ public class KSPmain{
 	public static void main(String []args){
 		Scanner konsoli = new Scanner(System.in);
 		String siirto="";
-		Tuloslista tuloslista = new Tuloslista(99);	
-		Tekoaly kone = new Tekoaly(tuloslista);		
-							
+		int monta=0;
+		
+		System.out.println("Kuinka monta peliä?(ota monta)");
+		while(true){	
+			try{
+				monta = konsoli.nextInt();
+				break;
+			}catch(InputMismatchException e){
+				System.out.println("Anna numero kiitos!");
+				konsoli.nextLine();
+			}
+		}
+		Tuloslista tuloslista = new Tuloslista(monta);	
+		Tekoaly kone = new Tekoaly(tuloslista);
+
 		while(true){
+			if(tuloslista.size()>=monta){
+				System.out.println(kone.kokoPelinVoittaja());
+				break;
+			}
+
 			/*
 			*Ihmispelaajan siirron kysyminen
 			*@param siirto	tallettaa pelaajan siirron		
