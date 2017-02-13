@@ -1,0 +1,11 @@
+**Testausdokumentti**
+
+Ohjelman logiikan ja tietorakenteiden koodia on testattun JUnit-yksikkötestauksella. Coberturan ilmoittama rivikattavuus on Tuloslistaluokalle neljännellä viikolla 100% ja tekoälyluokalle 85%. Testeissä käydään läpi metodien perustoiminnallisuuksia ja yritetään saada useita eri skenaarioita testattua. Välillä epäselvissä tapauksissa asetin tulostuskomennon esimerkiksi yksittäisen ehtolausekkeen sisään ja ajoin ohjelman varmistuen siitä, että ehtolausekkeen sisällä käydään ja se toimii.
+
+Main-luokka ei voi testata kokonaan suoraan yksikkötestauksella, joten olen testannut sitä ajamalla ohjelmaa itse. Koska ohjelma on suoraviivainen, tulee sen käyttöjärjestelmän toiminnot yleensä testattua jokaisella suorituskerralla. Samalla voin testata, että taktiikat toimivat käytännössä. Vaikka itse logiikka testataan yksikkötestauksella, tekoälypelaajan vaikeusastetta voi arvoida pelaamalla ohjelmalla itse, tai vielä paremmin pyytämällä ulkopuolisen kokeilemaan.
+
+![Esimerkki](/kuvat/kaappaus1.png)
+Format: ![Alt Text](url)
+Kuvassa näkyy ohjelman suoritusta manuaalisesti. Koska tulokset kirjataan ylös ja tulostetaan, pysyy tilanteen tasalla hyvin. Pelatessa voi testata eri taktiikoita.
+
+Ylimääräisiä, vain testausta varten tarkoitettujaa tulosteita, ovat: "mones:(luku)",joka kertoo tuloslistaan koon ja "eka:(luku) toka:(luku) alku:(luku)", joka tulostaa tunnistetun kolmen siirron kuvion kaksi ensimmäistä siirtoa (0,1,2=kivi,sakset,paperi) ja näiden perusteella annetun indeksiluvun(0-8) tästä kahden yhdistelmästä tilastolistalle. Nämä tulosteet eivät tietenkään kuulu varsinaiseen ohjelmaan, vaan niitä käytettiin virheen etsinnässä ja testauksessa.
