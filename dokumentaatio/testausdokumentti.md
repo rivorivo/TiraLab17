@@ -4,6 +4,6 @@ Ohjelman logiikan ja tietorakenteiden koodia on testattun JUnit-yksikkötestauks
 
 Main-luokka ei voi testata kokonaan suoraan yksikkötestauksella, joten olen testannut sitä ajamalla ohjelmaa itse. Koska ohjelma on suoraviivainen, tulee sen käyttöjärjestelmän toiminnot yleensä testattua jokaisella suorituskerralla. Samalla voin testata, että taktiikat toimivat käytännössä. Vaikka itse logiikka testataan yksikkötestauksella, tekoälypelaajan vaikeusastetta voi arvoida pelaamalla ohjelmalla itse, tai vielä paremmin pyytämällä ulkopuolisen kokeilemaan.
 
-![Esimerkki](/kuvat/kaappaus1.png)
-Format: ![Alt Text](url)
+![Esimerkki](https://github.com/rivorivo/TiraLab17/blob/master/dokumentaatio/kuvat/kaappaus1.png)
+Format: ![Esimerkki](https://github.com/rivorivo/TiraLab17/blob/master/dokumentaatio/kuvat/kaappaus1.png)
 
