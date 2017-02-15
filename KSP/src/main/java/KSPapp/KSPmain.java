@@ -1,4 +1,5 @@
 package KSPapp;
+import Tietorakenteet.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 /*käyttöliittymä, joka kysyy siirron ja ilmoittaa lopputuloksen
@@ -90,7 +91,7 @@ public class KSPmain{
 					tuloslista.lisaaPeli("kone",siirto);
 					System.out.println("Sakset leikkaavat paperin! Hävisit.");
 				}
-			}
+			}                   
 			System.out.println("");
 			System.out.println("Voitot: Sinä: "+kone.getVoitot()+" Kone: "+kone.getKonevoitot()+" Tasapelit: "+kone.getTasapelit());
 		}

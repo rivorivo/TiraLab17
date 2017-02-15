@@ -1,18 +1,23 @@
 package KSPapp;
+import Tietorakenteet.*;
+import Apulogiikka.*;
 public class Tekoaly{
 
 	/*
 	*Alustetaan tarpeellisia muuttujia
 	*/
 	private String konesiirto="Paperi";	
-	private Tuloslista pelit;
+	private final Tuloslista pelit;
 	private String taktiikka = "menestynein";
+	private final Kuviolista kuviolista;
+        private final Muuntaja m = new Muuntaja();
 	
 	/*
 	*Konstruktori
 	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
+                this.kuviolista = new Kuviolista(pelit.getMax());
 	}
 
 	/*
@@ -20,7 +25,7 @@ public class Tekoaly{
 	* ja vaihtaa taktiikkaa, jos siltä tuntuu
 	*/
 	public String getSiirto(){
-		
+                kuviolista.talletaKuvio(pelit);
 		if (pelit.size() > 9){
 			konesiirto = toistuvatKuviot();
 		}else if(taktiikka.equals("menestynein")){
@@ -121,12 +126,12 @@ public class Tekoaly{
 	*toiminnoksi valikoituu sen voittava siirto.
 	*/
 	public String toistuvatKuviot(){
-		int[][] kuviotA = pelit.getKuvioA();
-		int[][] kuviotB = pelit.getKuvioB();
+		int[][] kuviotA = kuviolista.getKuvioA();
+		int[][] kuviotB = kuviolista.getKuvioB();
 		String e=pelit.getSiirto(pelit.size()-2);
 		String t=pelit.getSiirto(pelit.size()-1);
-		int eka=pelit.muutaNumeroiksi(e);
-		int toka=pelit.muutaNumeroiksi(t);
+		int eka=m.muutaNumeroiksi(e);
+		int toka=m.muutaNumeroiksi(t);
 			int alku = 0;
 			int i=0;
 		for (int[] rivi: kuviotA) {
@@ -146,21 +151,10 @@ public class Tekoaly{
 				paras=j;
 			}
 		}
-		return pelaaVastaan(muutaSanaksi(paras));
+		return pelaaVastaan(m.muutaSanaksi(paras));
 
 	}
 
-	/*Muuttaa numero-koodauksen taas String-muotoon*/
-
-	public String muutaSanaksi(int num){
-		String sana ="Kivi";
-		if (num==1){
-			sana="Sakset";
-		}else if(num==2){;
-			sana="Paperi";
-		}
-		return sana;
-	}
 	/*
 	*Palauttaa siirron, joka voittaa parametrina 
 	*@param siirto 
