@@ -1,4 +1,4 @@
-package KSPapp;
+package Tietorakenteet;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -31,8 +31,7 @@ public class TuloslistaTest{
 		lista.lisaaPeli("Pelaaja", "Sakset");
 		lista.lisaaPeli("Kone", "Sakset");
 		lista.lisaaPeli("Pelaaja", "Kivi");
-		int[][] b = lista.getKuvioB();
-		Assert.assertEquals(1, b[4][0]);
+
 	}
 	
 	

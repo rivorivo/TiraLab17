@@ -30,4 +30,20 @@ public class Muuntaja {
 			}
 			return numero;
 	}
+	/*
+	*Palauttaa siirron, joka voittaa parametrina 
+	*@param siirto 
+	*annetun siirron.
+	*/
+	public String vastakkainen(String siirto){
+
+		if(siirto.equals("Paperi")){
+			siirto = "Sakset";
+		}else if(siirto.equals("Sakset")){
+			siirto = "Kivi";
+		}else if(siirto.equals("Kivi")){
+			siirto = "Paperi";
+		}
+		return siirto;
+	}
 }

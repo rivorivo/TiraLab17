@@ -23,10 +23,11 @@ public class KSPmain{
 		}
 		Tuloslista tuloslista = new Tuloslista(monta);	
 		Tekoaly kone = new Tekoaly(tuloslista);
+		Tulospalvelu tulospalvelu = new Tulospalvelu(monta);
 
 		while(true){
 			if(tuloslista.size()>=monta){
-				System.out.println(kone.kokoPelinVoittaja());
+				System.out.println(tulospalvelu.kokoPelinVoittaja(tuloslista));
 				break;
 			}
 
@@ -93,7 +94,7 @@ public class KSPmain{
 				}
 			}                   
 			System.out.println("");
-			System.out.println("Voitot: Sinä: "+kone.getVoitot()+" Kone: "+kone.getKonevoitot()+" Tasapelit: "+kone.getTasapelit());
+			tulospalvelu.ilmoitaTulos(tuloslista);
 		}
 	}
 }

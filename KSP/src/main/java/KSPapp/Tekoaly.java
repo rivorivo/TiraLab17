@@ -9,7 +9,7 @@ public class Tekoaly{
 	private String konesiirto="Paperi";	
 	private final Tuloslista pelit;
 	private String taktiikka = "menestynein";
-	private final Kuviolista kuviolista;
+	private final Tulospalvelu tulospalvelu;
         private final Muuntaja m = new Muuntaja();
 	
 	/*
@@ -17,7 +17,7 @@ public class Tekoaly{
 	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
-                this.kuviolista = new Kuviolista(pelit.getMax());
+                this.tulospalvelu = new Tulospalvelu(pelit.getMax());
 	}
 
 	/*
@@ -25,7 +25,7 @@ public class Tekoaly{
 	* ja vaihtaa taktiikkaa, jos siltä tuntuu
 	*/
 	public String getSiirto(){
-                kuviolista.talletaKuvio(pelit);
+                tulospalvelu.talletaKuvio(pelit);
 		if (pelit.size() > 9){
 			konesiirto = toistuvatKuviot();
 		}else if(taktiikka.equals("menestynein")){
@@ -126,8 +126,8 @@ public class Tekoaly{
 	*toiminnoksi valikoituu sen voittava siirto.
 	*/
 	public String toistuvatKuviot(){
-		int[][] kuviotA = kuviolista.getKuvioA();
-		int[][] kuviotB = kuviolista.getKuvioB();
+		int[][] kuviotA = tulospalvelu.getKuvioA();
+		int[][] kuviotB = tulospalvelu.getKuvioB();
 		String e=pelit.getSiirto(pelit.size()-2);
 		String t=pelit.getSiirto(pelit.size()-1);
 		int eka=m.muutaNumeroiksi(e);
@@ -151,26 +151,11 @@ public class Tekoaly{
 				paras=j;
 			}
 		}
-		return pelaaVastaan(m.muutaSanaksi(paras));
+		return m.vastakkainen(m.muutaSanaksi(paras));
 
 	}
 
-	/*
-	*Palauttaa siirron, joka voittaa parametrina 
-	*@param siirto 
-	*annetun siirron.
-	*/
-	public String pelaaVastaan(String siirto){
-
-		if(siirto.equals("Paperi")){
-			siirto = "Sakset";
-		}else if(siirto.equals("Sakset")){
-			siirto = "Kivi";
-		}else if(siirto.equals("Kivi")){
-			siirto = "Paperi";
-		}
-		return siirto;
-	}
+	
 	/*
 	 * palauttaa käytössä olevan taktiikan
 	 */
@@ -178,51 +163,5 @@ public class Tekoaly{
 		return taktiikka;
 	 }
 	 
-		/*
-	}
-	*Laskee ja palauttaa voittojen määrät tuloslistasta
-	*/
-	public int getVoitot(){
-		int voitot=0;
-		for(int i=0; i<pelit.size(); i++){
-			String v = pelit.getVoittaja(i);
-			if(v.equals("pelaaja")){
-				voitot++;
-			}
-		}			
-		return 	voitot;
-	}
-
-	public int getKonevoitot(){
-		int konevoitot=0;
-		for(int i=0; i<pelit.size(); i++){
-			String v = pelit.getVoittaja(i);
-			if(v.equals("kone")){
-				konevoitot++;
-			}
-		}
-		return konevoitot;	
-	}
 	
-	public int getTasapelit(){
-		int tasapelit=0;
-		for(int i=0; i<pelit.size(); i++){
-			String v = pelit.getVoittaja(i);
-			if(v.equals("tasapeli")){
-				tasapelit++;
-			}
-		}
-		return tasapelit;	
-	}
-
-	public String kokoPelinVoittaja(){
-		 
-		if(getVoitot()<getKonevoitot()){
-			return "Kone voitti pelin!";
-		}else if(getVoitot()>getKonevoitot()){
-			return "Sinä voitit pelin!";
-		}
-		return "Tasapeli!";
-	}
-
 }

@@ -1,15 +1,16 @@
 package Tietorakenteet;
+import Apulogiikka.*;
 public class Tuloslista{
 
 	private String[] siirrot;
 	private String[] voittajat;
-	private int mones=0;
+	private int pituus=0;
         private int max;
 
-	public Tuloslista(int koko){
-  		this.siirrot = new String[koko];
-	 	this.voittajat = new String[koko];
-                this.max=koko;
+	public Tuloslista(int max){
+  		this.siirrot = new String[max];
+	 	this.voittajat = new String[max];
+                this.max=max;
 	}
 	/*
 	*Lisää pelin voittajan @param String voittaja
@@ -17,9 +18,9 @@ public class Tuloslista{
 	*listaan.
 	*/
 	public void lisaaPeli(String voittaja,String siirto){
-		voittajat[mones]=voittaja;
-		siirrot[mones]=siirto;
-		mones++;
+		voittajat[pituus]=voittaja;
+		siirrot[pituus]=siirto;
+		pituus++;
 	}
 	public String getVoittaja(int luku){
 		return voittajat[luku];
@@ -27,8 +28,9 @@ public class Tuloslista{
 	public String getSiirto(int luku){
 		return siirrot[luku];
 	}
+
 	public int size(){
-		return mones;
+		return pituus;
 	}
         public int getMax(){
                 return max;
