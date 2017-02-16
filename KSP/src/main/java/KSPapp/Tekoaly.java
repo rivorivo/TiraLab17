@@ -1,6 +1,7 @@
 package KSPapp;
 import Tietorakenteet.*;
 import Apulogiikka.*;
+import Algoritmit.*;
 public class Tekoaly{
 
 	/*
@@ -11,13 +12,15 @@ public class Tekoaly{
 	private String taktiikka = "menestynein";
 	private final Kuviolista kuviolista;
         private final Muuntaja m = new Muuntaja();
+        private final Kuviohaku kh;
 	
 	/*
 	*Konstruktori
 	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
-        this.kuviolista = new Kuviolista(pelit.getMax());
+                this.kuviolista = new Kuviolista(pelit.getMax());
+                this.kh=new Kuviohaku(pelit);
 	}
 
 	/*
@@ -161,8 +164,6 @@ public class Tekoaly{
 		return m.vastakkainen(m.muutaSanaksi(todnak));
 
 	}
-
-	
 	/*
 	 * palauttaa käytössä olevan taktiikan
 	 */
