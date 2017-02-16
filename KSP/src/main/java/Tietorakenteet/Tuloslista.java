@@ -4,11 +4,13 @@ public class Tuloslista{
 
 	private String[] siirrot;
 	private String[] voittajat;
+	private String[] konesiirrot;
 	private int pituus=0;
         private int max;
 
 	public Tuloslista(int max){
   		this.siirrot = new String[max];
+		this.konesiirrot = new String[max];
 	 	this.voittajat = new String[max];
                 this.max=max;
 	}
@@ -17,16 +19,20 @@ public class Tuloslista{
 	*ja ihmispelaajan tekemän siirron @param String siirto
 	*listaan.
 	*/
-	public void lisaaPeli(String voittaja,String siirto){
+	public void lisaaPeli(String voittaja,String siirto, String konesiirto){
 		voittajat[pituus]=voittaja;
 		siirrot[pituus]=siirto;
+		konesiirrot[pituus]=konesiirto;
 		pituus++;
 	}
-	public String getVoittaja(int luku){
-		return voittajat[luku];
-	}
-	public String getSiirto(int luku){
-		return siirrot[luku];
+
+
+	public String[] getTulos(int i){
+		String voittaja = voittajat[i];
+		String pelaajanSiirto = siirrot[i];
+		String konesiirto = konesiirrot[i];
+		String[] tulos = {voittaja,pelaajanSiirto,konesiirto};
+		return tulos;
 	}
 
 	public int size(){

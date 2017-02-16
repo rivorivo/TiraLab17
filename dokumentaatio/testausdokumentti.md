@@ -8,3 +8,6 @@ Main-luokka ei voi testata kokonaan suoraan yksikkötestauksella, joten olen tes
  
 Kuvassa näkyy pelin testausta manuaalisesti. Tulosteet "eka" ja "toka" ovat tunnistettavan kolmen siirron kuvion kaksi ensimmäistä siirtoa(1,2,3=kivi,sakset,paperi) ja "alku" on indeksiluku(0-8), jonka perusteella listasta listaB:stä etsitään oikea kohta todennäköisen siirron laskemista varten. Tuloste "Monta" taas kertoo listan pituuden. Tällaiset aputulosteet eivät tietenkään kuulu varsinaiseen ohjelmaan vaan käytän niitä testaamiseen ja epäselvien virheiden selvittämiseen.
 
+*Suorituskykytestaus*
+
+Pelasin KSP:tä, ottaen ylös TiraLabran wikissä ehdotetulla tekniikalla aikoja toistuvatKuviot-operaation suorituksesta. Suoritusaika pysyi kokoajan 0ms tai 1ms.

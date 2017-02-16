@@ -1,5 +1,6 @@
 package KSPapp;
 import Tietorakenteet.*;
+import Apulogiikka.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 /*käyttöliittymä, joka kysyy siirron ja ilmoittaa lopputuloksen
@@ -23,7 +24,7 @@ public class KSPmain{
 		}
 		Tuloslista tuloslista = new Tuloslista(monta);	
 		Tekoaly kone = new Tekoaly(tuloslista);
-		Tulospalvelu tulospalvelu = new Tulospalvelu(monta);
+		Tulospalvelu tulospalvelu = new Tulospalvelu();
 
 		while(true){
 			if(tuloslista.size()>=monta){
@@ -55,46 +56,18 @@ public class KSPmain{
 			*Tähän väliin tekoälyltä siirron kysyminen
 			*@param konesiirto tallettaa konepelaajan siirron	
 			*/ 
+			long aikaAlussa = System.currentTimeMillis();
 			String konesiirto = kone.getSiirto();		
-
+			long aikaLopussa = System.currentTimeMillis(); 
+			System.out.println("Operaatioon kone.getSiirto kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
 		
 			/* 
 			*lopputuloksen laskeminen ja ilmoitus ihmispelaajalle
 			*ja konepelaajalle
 			*/
-			System.out.println("");
-			System.out.println(siirto+" - "+konesiirto);
-			System.out.println("");				
-			if(siirto.equals(konesiirto)){
-			tuloslista.lisaaPeli("tasapeli",siirto);
-			System.out.println("Sama siirto! Tasapeli.");		
-			} else if(siirto.equals("Kivi")){
-				if(konesiirto.equals("Sakset")){
-					tuloslista.lisaaPeli("pelaaja",siirto);
-					System.out.println("Kivi murskaa sakset! Voitit!");
-				}else if(konesiirto.equals("Paperi")){
-					tuloslista.lisaaPeli("kone",siirto);
-					System.out.println("Paperi peittää kiven! Hävisit.");
-				}
-			} else if(siirto.equals("Sakset")){
-				if(konesiirto.equals("Kivi")){
-					tuloslista.lisaaPeli("kone",siirto);
-					System.out.println("Kivi murskaa sakset! Hävisit.");
-				}else if(konesiirto.equals("Paperi")){
-					tuloslista.lisaaPeli("pelaaja",siirto);
-					System.out.println("Sakset leikkaavat paperin! Voitit!");
-				}
-			} else if(siirto.equals("Paperi")){
-				if(konesiirto.equals("Kivi")){
-					tuloslista.lisaaPeli("pelaaja",siirto);
-					System.out.println("Paperi peittää kiven! Voitit!");			
-				}else if(konesiirto.equals("Sakset")){
-					tuloslista.lisaaPeli("kone",siirto);
-					System.out.println("Sakset leikkaavat paperin! Hävisit.");
-				}
-			}                   
-			System.out.println("");
-			tulospalvelu.ilmoitaTulos(tuloslista);
+			String voittaja = tulospalvelu.getVoittaja(siirto,konesiirto);
+			tuloslista.lisaaPeli(voittaja, siirto, konesiirto);                 
+			System.out.println(tulospalvelu.ilmoitaTilanne(tuloslista));
 		}
 	}
 }

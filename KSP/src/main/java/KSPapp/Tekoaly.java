@@ -9,7 +9,7 @@ public class Tekoaly{
 	private String konesiirto="Paperi";	
 	private final Tuloslista pelit;
 	private String taktiikka = "menestynein";
-	private final Tulospalvelu tulospalvelu;
+	private final Kuviolista kuviolista;
         private final Muuntaja m = new Muuntaja();
 	
 	/*
@@ -17,7 +17,7 @@ public class Tekoaly{
 	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
-                this.tulospalvelu = new Tulospalvelu(pelit.getMax());
+        this.kuviolista = new Kuviolista(pelit.getMax());
 	}
 
 	/*
@@ -25,7 +25,9 @@ public class Tekoaly{
 	* ja vaihtaa taktiikkaa, jos siltä tuntuu
 	*/
 	public String getSiirto(){
-                tulospalvelu.talletaKuvio(pelit);
+		if (pelit.size()>2){
+                	kuviolista.talletaKuvio(pelit);
+		}
 		if (pelit.size() > 9){
 			konesiirto = toistuvatKuviot();
 		}else if(taktiikka.equals("menestynein")){
@@ -56,20 +58,22 @@ public class Tekoaly{
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
-			if(pelit.getVoittaja(i).equals("kone")){
-				if(pelit.getSiirto(i).equals("Kivi")){
+			String[] tulos = pelit.getTulos(i);
+			
+			if(tulos[0].equals("kone")){
+				if(tulos[2].equals("Paperi")){
 					paperit++;
-				}else if(pelit.getSiirto(i).equals("Sakset")){
+				}else if(tulos[2].equals("Kivi")){
 					kivet++;
-				}else if(pelit.getSiirto(i).equals("Paperi")){
+				}else if(tulos[2].equals("Sakset")){
 					sakset++;
 				}
-			}else if(pelit.getVoittaja(i).equals("pelaaja")){
-				if(pelit.getSiirto(i).equals("Kivi")){
+			}else if(tulos[0].equals("pelaaja")){
+				if(tulos[2].equals("Sakset")){
 					sakset--;
-				}else if(pelit.getSiirto(i).equals("Sakset")){
+				}else if(tulos[2].equals("Paperi")){
 					paperit--;
-				}else if(pelit.getSiirto(i).equals("Paperi")){
+				}else if(tulos[2].equals("Kivi")){
 					kivet--;
 				}
 			}
@@ -91,13 +95,13 @@ public class Tekoaly{
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
-
-			if(pelit.getVoittaja(i).equals("pelaaja")){
-				if(pelit.getSiirto(i).equals("Kivi")){
+			String[] tulos = pelit.getTulos(i);
+			if(tulos[0].equals("pelaaja")){
+				if(tulos[1].equals("Kivi")){
 					kivet++;
-				}else if(pelit.getSiirto(i).equals("Sakset")){
+				}else if(tulos[1].equals("Sakset")){
 					sakset++;
-				}else if(pelit.getSiirto(i).equals("Paperi")){
+				}else if(tulos[1].equals("Paperi")){
 					paperit++;
 				}
 			}
@@ -126,32 +130,35 @@ public class Tekoaly{
 	*toiminnoksi valikoituu sen voittava siirto.
 	*/
 	public String toistuvatKuviot(){
-		int[][] kuviotA = tulospalvelu.getKuvioA();
-		int[][] kuviotB = tulospalvelu.getKuvioB();
-		String e=pelit.getSiirto(pelit.size()-2);
-		String t=pelit.getSiirto(pelit.size()-1);
-		int eka=m.muutaNumeroiksi(e);
-		int toka=m.muutaNumeroiksi(t);
-			int alku = 0;
-			int i=0;
-		for (int[] rivi: kuviotA) {
+		int[][] alkutilat = kuviolista.getAlkutilat();
+		int[][] tilastot = kuviolista.getTilastot();
+		String[] e=pelit.getTulos(pelit.size()-2);
+		String[] t=pelit.getTulos(pelit.size()-1);
+		String ek=e[1];
+		String to=t[1];
+		int eka=m.muutaNumeroiksi(ek);
+		int toka=m.muutaNumeroiksi(to);
+		int alku = 0;
+		int i=0;
+
+		for (int[] rivi: alkutilat) {
 			if (rivi[0]==eka&&rivi[1]==toka){
 					alku = i;
 					break;
 				}
 			i++;
 		}
-		int paras= 0;
+		int todnak= 0;
 		int isoin= 0;
 
 		for (int j = 0; j<3; j++) {
-			int maara =kuviotB[alku][j];
+			int maara =tilastot[alku][j];
 			if(maara>isoin){
 				isoin=maara;
-				paras=j;
+				todnak=j;
 			}
 		}
-		return m.vastakkainen(m.muutaSanaksi(paras));
+		return m.vastakkainen(m.muutaSanaksi(todnak));
 
 	}
 

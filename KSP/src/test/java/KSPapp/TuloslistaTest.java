@@ -7,32 +7,26 @@ public class TuloslistaTest{
 	
 	@Test
 	public void tallentaaJaMuistaaTuloksen(){
-		lista.lisaaPeli("Pelaaja", "Sakset");
-		String voittaja = lista.getVoittaja(0);
-		String siirto = lista.getSiirto(0);
+		
+		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
+		String[] tulos=lista.getTulos(0);
+		String voittaja =  tulos[0];
+		String siirto = tulos[1];
 		Assert.assertEquals("Pelaaja",voittaja);
 		Assert.assertEquals("Sakset",siirto);
 	}
 	
 	@Test
 	public void laskeePelit(){
-		lista.lisaaPeli("Pelaaja", "Sakset");
-		lista.lisaaPeli("Kone", "Sakset");
-		lista.lisaaPeli("Pelaaja", "Kivi");
-		lista.lisaaPeli("Kone", "Paperi");
-		lista.lisaaPeli("Pelaaja", "Sakset");
+		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("Kone", "Sakset","Sakset");
+		lista.lisaaPeli("Pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("Kone", "Paperi","Sakset");
+		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
 		int peleja = lista.size();
 		Assert.assertEquals(5,peleja);
 	}
 	
-	
-	@Test
-	public void tallettaaKuvion(){
-		lista.lisaaPeli("Pelaaja", "Sakset");
-		lista.lisaaPeli("Kone", "Sakset");
-		lista.lisaaPeli("Pelaaja", "Kivi");
-
-	}
 	
 	
 }

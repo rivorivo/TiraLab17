@@ -16,35 +16,36 @@ public class TekoalyTest{
 	
 	@Test
 	public void siirtaaMenestyksenPerusteella() {
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("kone", "Paperi");
-		lista.lisaaPeli("kone", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Paperi");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("kone", "Paperi","Sakset");
+		lista.lisaaPeli("kone", "Sakset","Kivi");
+		lista.lisaaPeli("kone", "Sakset","Kivi");
+		lista.lisaaPeli("pelaaja", "Sakset","Paperi");
 		String menestynein = aly.menestyksenPerusteella();
 		Assert.assertEquals("Kivi",menestynein);
 	}
 	
 	@Test
 	public void vastustajanParas(){
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("kone", "Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("kone", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
 		String paras = aly.vastustajanParas();
 		Assert.assertEquals("Paperi",paras);
 	}
 	
 	@Test
 	public void kirjaaVoitot(){
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("tasapeli","kivi");
-		lista.lisaaPeli("kone", "Paperi");
-		lista.lisaaPeli("tasapeli","kivi");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("tasapeli","kivi","Sakset");
+		lista.lisaaPeli("kone", "Paperi","Sakset");
+		lista.lisaaPeli("tasapeli","kivi","Sakset");
 
 		
 	}
@@ -52,48 +53,38 @@ public class TekoalyTest{
 	@Test
 	public void tunnistaaKuvion(){
 		
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja","Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja","Kivi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-	//	Assert.assertEquals("Kivi",aly.toistuvatKuviot());
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja","Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja","Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		//Assert.assertEquals("Kivi",aly.toistuvatKuviot());
 		
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja","Paperi");
-		lista.lisaaPeli("pelaaja", "Paperi");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja","Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
 		Assert.assertEquals("Paperi",aly.toistuvatKuviot());
 		
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset");
-	//	Assert.assertEquals("Sakset",aly.toistuvatKuviot());
-		
-	}
-	@Test
-	public void pelaaVastaan(){
-
-	}
-	@Test
-	public void muuttuuSanaksiOikein(){
-
-	}
-	
-	
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
+		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
+		//Assert.assertEquals("Sakset",aly.toistuvatKuviot());
+	}	
 }
