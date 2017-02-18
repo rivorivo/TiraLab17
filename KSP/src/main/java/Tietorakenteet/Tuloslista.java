@@ -7,6 +7,7 @@ public class Tuloslista{
 	private String[] konesiirrot;
 	private int pituus=0;
         private int max;
+    
 
 	public Tuloslista(int max){
   		this.siirrot = new String[max];
@@ -15,9 +16,9 @@ public class Tuloslista{
                 this.max=max;
 	}
 	/*
-	*Lisää pelin voittajan @param String voittaja
-	*ja ihmispelaajan tekemän siirron @param String siirto
-	*listaan.
+	*Lisää listaan pelin voittajan @param String voittaja
+	*ja ihmispelaajan tekemän siirron @param String siirto ja koneen siirron 
+	*@param String konesiirto  
 	*/
 	public void lisaaPeli(String voittaja,String siirto, String konesiirto){
 		voittajat[pituus]=voittaja;
@@ -25,8 +26,9 @@ public class Tuloslista{
 		konesiirrot[pituus]=konesiirto;
 		pituus++;
 	}
-
-
+	/*
+	*Kertoo listana pelin tietyn kierroksen tuloksen indeksin @param int i -perusteella
+	*/
 	public String[] getTulos(int i){
 		String voittaja = voittajat[i];
 		String pelaajanSiirto = siirrot[i];
@@ -38,8 +40,8 @@ public class Tuloslista{
 	public int size(){
 		return pituus;
 	}
-        public int getMax(){
-                return max;
-        }
+    public int getMax(){
+            return max;
+    }
 
 }

@@ -8,9 +8,11 @@ public class Tekoaly{
 	*/
 	private String konesiirto="Paperi";	
 	private final Tuloslista pelit;
+
 	private String taktiikka = "menestynein";
 	private final Kuviolista kuviolista;
-        private final Muuntaja m = new Muuntaja();
+    private final Muuntaja m = new Muuntaja();
+    private final Tulospalvelu tulospalvelu = new Tulospalvelu();
 	
 	/*
 	*Konstruktori
@@ -130,7 +132,7 @@ public class Tekoaly{
 	*toiminnoksi valikoituu sen voittava siirto.
 	*/
 	public String toistuvatKuviot(){
-		int[][] alkutilat = kuviolista.getAlkutilat();
+		int[][] alkutilat = tulospalvelu.getAlkutilat();
 		int[][] tilastot = kuviolista.getTilastot();
 		String[] e=pelit.getTulos(pelit.size()-2);
 		String[] t=pelit.getTulos(pelit.size()-1);

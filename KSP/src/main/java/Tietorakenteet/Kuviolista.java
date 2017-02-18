@@ -3,9 +3,9 @@ import Apulogiikka.*;
 
 public class Kuviolista{
 
-	private int[][] alkutilat = {{0,0},{0,1},{0,2},{1,0},{1,1},{1,2},{2,0},{2,1},{2,2}};
 	private int[][] tilastot;
 	Muuntaja m = new Muuntaja();
+	Tulospalvelu t =new Tulospalvelu();
 	
 	public Kuviolista(int koko){
 		this.tilastot = new int[9][koko];
@@ -26,7 +26,7 @@ public class Kuviolista{
 			int eka =m.muutaNumeroiksi(teka[1]);
 			int toka=m.muutaNumeroiksi(ttoka[1]);
 			int kolmas=m.muutaNumeroiksi(tkolmas[1]);
-
+			int[][] alkutilat = t.getAlkutilat();
 			for(int[] rivi : alkutilat){
 
 				if (rivi[0]==eka&&rivi[1]==toka){
@@ -37,10 +37,6 @@ public class Kuviolista{
 			}
 		}
 			
-	}
-
-	public int[][] getAlkutilat(){
-		return alkutilat;
 	}
 	public int[][] getTilastot(){
 		return tilastot;

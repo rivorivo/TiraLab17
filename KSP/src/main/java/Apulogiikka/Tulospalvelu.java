@@ -40,9 +40,6 @@ public class Tulospalvelu{
 		}
 		return tasapelit;	
 	}
-	public void ilmoitaTulos(){
-			
-	}
 
 	public String getVoittaja(String siirto, String konesiirto){
 		System.out.println("");
@@ -92,6 +89,11 @@ public class Tulospalvelu{
 	}
 	public String ilmoitaTilanne(Tuloslista pelit){
 		return "Voitot: Sinä: "+getVoitot(pelit)+" Kone: "+getKonevoitot(pelit)+" Tasapelit: "+getTasapelit(pelit);	
+	}
+
+		public int[][] getAlkutilat(){
+		int[][] alkutilat = {{0,0},{0,1},{0,2},{1,0},{1,1},{1,2},{2,0},{2,1},{2,2}};
+		return alkutilat;
 	}
 
 }
