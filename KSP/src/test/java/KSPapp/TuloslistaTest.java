@@ -3,28 +3,29 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 public class TuloslistaTest{
-	Tuloslista lista = new Tuloslista(99);
+	Tuloslista lista = new Tuloslista();
 	
 	@Test
 	public void tallentaaJaMuistaaTuloksen(){
-		
-		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
-		String[] tulos=lista.getTulos(0);
-		String voittaja =  tulos[0];
-		String siirto = tulos[1];
-		Assert.assertEquals("Pelaaja",voittaja);
-		Assert.assertEquals("Sakset",siirto);
+		lista.lisaaPeli(1,1,0);
+		Linklist tulos=lista.getTulos(0);
+		Alkio ksiirto=tulos.getVika();
+		Alkio siirto=ksiirto.getEdellinen();
+		Alkio voittaja = siirto.getEdellinen();
+
+		Assert.assertEquals(0,ksiirto.getArvo());
+		Assert.assertEquals(1,siirto.getArvo());
+		Assert.assertEquals(1,voittaja.getArvo());
+	
 	}
 	
 	@Test
 	public void laskeePelit(){
-		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("Kone", "Sakset","Sakset");
-		lista.lisaaPeli("Pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("Kone", "Paperi","Sakset");
-		lista.lisaaPeli("Pelaaja", "Sakset","Sakset");
-		int peleja = lista.size();
-		Assert.assertEquals(5,peleja);
+		lista.lisaaPeli(1,1,0);
+		lista.lisaaPeli(1,1,0);
+		lista.lisaaPeli(1,1,0);
+		lista.lisaaPeli(1,1,0);
+		Assert.assertEquals(4,lista.size());
 	}
 	
 	

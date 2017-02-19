@@ -7,10 +7,12 @@ public class Tulospalvelu{
 	*/
 	public int getVoitot(Tuloslista pelit){
 		int voitot=0;
-		for(int i=0; i<pelit.size(); i++){
-			String[] tulos = pelit.getTulos(i);
-			String v = tulos[0];
-			if(v.equals("pelaaja")){
+		int pituus = pelit.size();
+		for(int i=0; i<pituus; i++){
+			Linklist tulos = pelit.getTulos(i);
+			Alkio voittaja=tulos.getAlkio(0);
+			int v = voittaja.getArvo();
+			if(v==0){
 				voitot++;
 			}
 		}			
@@ -19,10 +21,12 @@ public class Tulospalvelu{
 
 	public int getKonevoitot(Tuloslista pelit){
 		int konevoitot=0;
-		for(int i=0; i<pelit.size(); i++){
-			String[] tulos = pelit.getTulos(i);
-			String v = tulos[0];
-			if(v.equals("kone")){
+		int pituus = pelit.size();
+		for(int i=0; i<pituus; i++){
+			Linklist tulos = pelit.getTulos(i);
+			Alkio voittaja=tulos.getAlkio(0);
+			int v = voittaja.getArvo();
+			if(v==1){
 				konevoitot++;
 			}
 		}
@@ -31,10 +35,12 @@ public class Tulospalvelu{
 	
 	public int getTasapelit(Tuloslista pelit){
 		int tasapelit=0;
-		for(int i=0; i<pelit.size(); i++){
-			String[] tulos = pelit.getTulos(i);
-			String v = tulos[0];
-			if(v.equals("tasapeli")){
+		int pituus = pelit.size();		
+		for(int i=0; i<pituus; i++){
+			Linklist tulos = pelit.getTulos(i);
+			Alkio voittaja=tulos.getAlkio(0);
+			int v = voittaja.getArvo();
+			if(v==2){
 				tasapelit++;
 			}
 		}
@@ -91,7 +97,7 @@ public class Tulospalvelu{
 		return "Voitot: Sinä: "+getVoitot(pelit)+" Kone: "+getKonevoitot(pelit)+" Tasapelit: "+getTasapelit(pelit);	
 	}
 
-		public int[][] getAlkutilat(){
+	public int[][] getAlkutilat(){
 		int[][] alkutilat = {{0,0},{0,1},{0,2},{1,0},{1,1},{1,2},{2,0},{2,1},{2,2}};
 		return alkutilat;
 	}

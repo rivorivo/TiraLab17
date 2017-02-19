@@ -11,7 +11,6 @@ package Apulogiikka;
  */
 public class Muuntaja {
     	/*Muuttaa numero-koodauksen taas String-muotoon ja toisinpäin*/
-
 	public String muutaSanaksi(int num){
 		String sana ="Kivi";
 		if (num==1){
@@ -21,13 +20,14 @@ public class Muuntaja {
 		}
 		return sana;
 	}
-	public int muutaNumeroiksi(String siirto){
+	public int muutaNumeroiksi(String sana){
 			int numero=0;
-			if(siirto.equals("Sakset")){
+			if(sana.equals("Sakset")||sana.equals("kone")){
 				numero=1;
-			}else if(siirto.equals("Paperi")){
+			}else if(sana.equals("Paperi")||sana.equals("tasapeli")){
 				numero=2;
 			}
+
 			return numero;
 	}
 	/*

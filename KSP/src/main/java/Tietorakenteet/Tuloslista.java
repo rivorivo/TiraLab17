@@ -1,47 +1,32 @@
 package Tietorakenteet;
-import Apulogiikka.*;
 public class Tuloslista{
 
-	private String[] siirrot;
-	private String[] voittajat;
-	private String[] konesiirrot;
-	private int pituus=0;
-        private int max;
-    
+	private Linklist siirtolista;
+	private Linklist voittolista;
+	private Linklist konesiirtolista;
 
-	public Tuloslista(int max){
-  		this.siirrot = new String[max];
-		this.konesiirrot = new String[max];
-	 	this.voittajat = new String[max];
-                this.max=max;
+	public Tuloslista(){
+		siirtolista=new Linklist();
+		voittolista=new Linklist();
+		konesiirtolista=new Linklist();
 	}
-	/*
-	*Lisää listaan pelin voittajan @param String voittaja
-	*ja ihmispelaajan tekemän siirron @param String siirto ja koneen siirron 
-	*@param String konesiirto  
-	*/
-	public void lisaaPeli(String voittaja,String siirto, String konesiirto){
-		voittajat[pituus]=voittaja;
-		siirrot[pituus]=siirto;
-		konesiirrot[pituus]=konesiirto;
-		pituus++;
+	public void lisaaPeli(int voittaja,int siirto,int konesiirto){
+			
+			voittolista.uusiAlkio(voittaja);
+			siirtolista.uusiAlkio(siirto);
+			konesiirtolista.uusiAlkio(konesiirto);
 	}
-	/*
-	*Kertoo listana pelin tietyn kierroksen tuloksen indeksin @param int i -perusteella
-	*/
-	public String[] getTulos(int i){
-		String voittaja = voittajat[i];
-		String pelaajanSiirto = siirrot[i];
-		String konesiirto = konesiirrot[i];
-		String[] tulos = {voittaja,pelaajanSiirto,konesiirto};
+
+	public Linklist getTulos(int j){
+		Linklist tulos = new Linklist();
+		tulos.uusiAlkio(voittolista.getAlkio(j).getArvo());
+		tulos.uusiAlkio(siirtolista.getAlkio(j).getArvo());
+		tulos.uusiAlkio(konesiirtolista.getAlkio(j).getArvo());
 		return tulos;
 	}
 
 	public int size(){
-		return pituus;
+		return voittolista.pituus();
 	}
-    public int getMax(){
-            return max;
-    }
 
 }

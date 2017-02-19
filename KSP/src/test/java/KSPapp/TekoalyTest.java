@@ -5,86 +5,45 @@ import org.junit.Test;
 
 
 public class TekoalyTest{
-	Tuloslista lista = new Tuloslista(99);
+	Tuloslista lista = new Tuloslista();
 	Tekoaly aly = new Tekoaly(lista);
 	
 	@Test
 	public void avaussiirtoPaperi() {
-		String siirto=aly.getSiirto();
-		Assert.assertEquals("Paperi",siirto);
+		Assert.assertEquals("Paperi",aly.getSiirto());
 	}
 	
 	@Test
 	public void siirtaaMenestyksenPerusteella() {
-		lista.lisaaPeli("pelaaja", "Sakset","Paperi");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("kone", "Paperi","Sakset");
-		lista.lisaaPeli("kone", "Sakset","Kivi");
-		lista.lisaaPeli("kone", "Sakset","Kivi");
-		lista.lisaaPeli("pelaaja", "Sakset","Paperi");
-		String menestynein = aly.menestyksenPerusteella();
-		Assert.assertEquals("Kivi",menestynein);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(0,2,1);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(2,1,1);
+		Assert.assertEquals("Kivi",aly.menestyksenPerusteella());
+
+
 	}
 	
 	@Test
 	public void vastustajanParas(){
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("kone", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		String paras = aly.vastustajanParas();
-		Assert.assertEquals("Paperi",paras);
-	}
-	
-	@Test
-	public void kirjaaVoitot(){
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("tasapeli","kivi","Sakset");
-		lista.lisaaPeli("kone", "Paperi","Sakset");
-		lista.lisaaPeli("tasapeli","kivi","Sakset");
-
-		
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(0,1,2);
+			lista.lisaaPeli(0,1,2);
+			lista.lisaaPeli(0,0,1);
+		Assert.assertEquals("Sakset",aly.vastustajanParas());
 	}
 	
 	@Test
 	public void tunnistaaKuvion(){
-		
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja","Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja","Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		//Assert.assertEquals("Kivi",aly.toistuvatKuviot());
-		
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja","Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(1,0,2);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(1,0,2);
+			lista.lisaaPeli(1,1,0);
+			lista.lisaaPeli(1,1,0);
 		Assert.assertEquals("Paperi",aly.toistuvatKuviot());
-		
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		lista.lisaaPeli("pelaaja", "Paperi","Sakset");
-		lista.lisaaPeli("pelaaja", "Kivi","Sakset");
-		lista.lisaaPeli("pelaaja", "Sakset","Sakset");
-		//Assert.assertEquals("Sakset",aly.toistuvatKuviot());
+
 	}	
 }

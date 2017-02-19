@@ -19,7 +19,7 @@ public class Tekoaly{
 	*/
 	public Tekoaly(Tuloslista pelit){
 		this.pelit=pelit;
-        this.kuviolista = new Kuviolista(pelit.getMax());
+        this.kuviolista = new Kuviolista(99);
 	}
 
 	/*
@@ -60,22 +60,27 @@ public class Tekoaly{
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
-			String[] tulos = pelit.getTulos(i);
+
+			Linklist tulos = pelit.getTulos(i);
 			
-			if(tulos[0].equals("kone")){
-				if(tulos[2].equals("Paperi")){
+			int ksiirto=tulos.getVika().getArvo();
+			int voitto=tulos.getAlkio(3).getArvo();
+
+
+			if(voitto==1){
+				if(ksiirto==2){
 					paperit++;
-				}else if(tulos[2].equals("Kivi")){
+				}else if(ksiirto==0){
 					kivet++;
-				}else if(tulos[2].equals("Sakset")){
+				}else if(ksiirto==1){
 					sakset++;
 				}
-			}else if(tulos[0].equals("pelaaja")){
-				if(tulos[2].equals("Sakset")){
+			}else if(voitto==0){
+				if(ksiirto==1){
 					sakset--;
-				}else if(tulos[2].equals("Paperi")){
+				}else if(ksiirto==2){
 					paperit--;
-				}else if(tulos[2].equals("Kivi")){
+				}else if(ksiirto==0){
 					kivet--;
 				}
 			}
@@ -97,13 +102,18 @@ public class Tekoaly{
 		int paperit=0;
 		String isoin = "Paperi";
 		for(int i=0; i<pelit.size(); i++){
-			String[] tulos = pelit.getTulos(i);
-			if(tulos[0].equals("pelaaja")){
-				if(tulos[1].equals("Kivi")){
+
+			Linklist tulos = pelit.getTulos(i);
+			int siirto=tulos.getVika().getEdellinen().getArvo();
+			int voitto=tulos.getVika().getEdellinen().getEdellinen().getArvo();
+        System.out.println("voitto "+voitto);
+        System.out.println("siirto "+siirto);
+			if(voitto==0){
+				if(siirto==0){
 					kivet++;
-				}else if(tulos[1].equals("Sakset")){
+				}else if(siirto==1){
 					sakset++;
-				}else if(tulos[1].equals("Paperi")){
+				}else if(siirto==2){
 					paperit++;
 				}
 			}
@@ -134,12 +144,10 @@ public class Tekoaly{
 	public String toistuvatKuviot(){
 		int[][] alkutilat = tulospalvelu.getAlkutilat();
 		int[][] tilastot = kuviolista.getTilastot();
-		String[] e=pelit.getTulos(pelit.size()-2);
-		String[] t=pelit.getTulos(pelit.size()-1);
-		String ek=e[1];
-		String to=t[1];
-		int eka=m.muutaNumeroiksi(ek);
-		int toka=m.muutaNumeroiksi(to);
+		Linklist e = pelit.getTulos(2);
+		Linklist t = pelit.getTulos(1);
+		int eka=e.getAlkio(2).getArvo();
+		int toka=t.getAlkio(1).getArvo();
 		int alku = 0;
 		int i=0;
 

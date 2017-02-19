@@ -11,6 +11,7 @@ public class KSPmain{
 		Scanner konsoli = new Scanner(System.in);
 		String siirto="";
 		int monta=0;
+		Muuntaja m = new Muuntaja();
 		
 		System.out.println("Kuinka monta peliä?(ota monta)");
 		while(true){	
@@ -22,7 +23,7 @@ public class KSPmain{
 				konsoli.nextLine();
 			}
 		}
-		Tuloslista tuloslista = new Tuloslista(monta);	
+		Tuloslista tuloslista = new Tuloslista();	
 		Tekoaly kone = new Tekoaly(tuloslista);
 		Tulospalvelu tulospalvelu = new Tulospalvelu();
 
@@ -42,9 +43,9 @@ public class KSPmain{
 				if(konsoli.nextLine().equals("")){break;}
 			}
 			System.out.println("Anna siirtosi:");
-			System.out.println("K=kivi");
-			System.out.println("S=sakset");
-			System.out.println("P=paperi");
+			System.out.println("k=kivi");
+			System.out.println("s=sakset");
+			System.out.println("p=paperi");
 			while(true){
 				siirto = konsoli.nextLine();
 				if(siirto.equalsIgnoreCase("K")){siirto="Kivi";break;}
@@ -56,17 +57,14 @@ public class KSPmain{
 			*Tähän väliin tekoälyltä siirron kysyminen
 			*@param konesiirto tallettaa konepelaajan siirron	
 			*/ 
-			long aikaAlussa = System.currentTimeMillis();
-			String konesiirto = kone.getSiirto();		
-			long aikaLopussa = System.currentTimeMillis(); 
-			System.out.println("Operaatioon kone.getSiirto kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+			String konesiirto = kone.getSiirto();	
 		
 			/* 
 			*lopputuloksen laskeminen ja ilmoitus ihmispelaajalle
 			*ja konepelaajalle
 			*/
 			String voittaja = tulospalvelu.getVoittaja(siirto,konesiirto);
-			tuloslista.lisaaPeli(voittaja, siirto, konesiirto);                 
+			tuloslista.lisaaPeli(m.muutaNumeroiksi(voittaja), m.muutaNumeroiksi(siirto), m.muutaNumeroiksi(konesiirto));                 
 			System.out.println(tulospalvelu.ilmoitaTilanne(tuloslista));
 		}
 	}
