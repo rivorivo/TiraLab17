@@ -9,7 +9,7 @@ public class Tekoaly{
 	private String konesiirto="Paperi";	
 	private final Tuloslista pelit;
 
-	private String taktiikka = "vastustajan paras";
+	private String taktiikka = "menestynein";
 	private final Kuviolista kuviolista;
     private final Muuntaja m = new Muuntaja();
     private final Tulospalvelu tulospalvelu = new Tulospalvelu();
@@ -30,22 +30,15 @@ public class Tekoaly{
 		if (pelit.size()>2){
                 	kuviolista.talletaKuvio(pelit);
 		}
-		if (pelit.size() > 9999){
-			
+		if (pelit.size() > 9){
 			konesiirto = toistuvatKuviot();
-			
 		}else if(taktiikka.equals("menestynein")){
 			konesiirto = menestyksenPerusteella();
 			if(pelit.size() > 4){
-				vaihdaTaktiikka("vastustajan paras");
-		
+				vaihdaTaktiikka("vastustajan paras");	
 			}
 		}else if(taktiikka.equals("vastustajan paras")){
-		long aikaAlussa = System.currentTimeMillis(); 
 			konesiirto = vastustajanParas();
-	long aikaLopussa = System.currentTimeMillis(); 
-	System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-
 		}else if(taktiikka.equals("toistuvat kuviot")){
 			konesiirto = toistuvatKuviot();
 		}
