@@ -47,6 +47,12 @@ public class Tulospalvelu{
 		return tasapelit;	
 	}
 
+	/*
+	*parametreinä @siirto ja @konesiirto, joiden ja kivi-sakset-paperin sääntöjen  
+	*perusteella katsotaan, kumpi voitti ja tulostetaan ruudulle. Samalla palautetaan voittaja
+	*
+	*/
+
 	public String getVoittaja(String siirto, String konesiirto){
 		System.out.println("");
 		System.out.println(siirto+" - "+konesiirto);
@@ -83,6 +89,7 @@ public class Tulospalvelu{
  		return voittaja; 	         
 	}
 
+	/*laskee ja tulosta koko pelin voittajan*/
 	public String kokoPelinVoittaja(Tuloslista pelit){
 		 
 		if(getVoitot(pelit)<getKonevoitot(pelit)){
@@ -93,10 +100,11 @@ public class Tulospalvelu{
 		return "Tasapeli!";
 
 	}
+	/*tulostaa @param pelit -listan perusteella voittajat*/
 	public String ilmoitaTilanne(Tuloslista pelit){
 		return "Voitot: Sinä: "+getVoitot(pelit)+" Kone: "+getKonevoitot(pelit)+" Tasapelit: "+getTasapelit(pelit);	
 	}
-
+	/*sisältää kaikki kahden siirron yhdistelmät*/
 	public int[][] getAlkutilat(){
 		int[][] alkutilat = {{0,0},{0,1},{0,2},{1,0},{1,1},{1,2},{2,0},{2,1},{2,2}};
 		return alkutilat;

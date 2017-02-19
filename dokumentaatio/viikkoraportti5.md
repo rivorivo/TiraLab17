@@ -7,4 +7,4 @@ Muistutin mieleeni Tira-kurssilta tutun linkitetyn listan toteutuksen ja opin te
     **Mikä jäi epäselväksi tai tuottanut vaikeuksia?**
 Epäselväksi jäi, että miten toteutan suorituskykytestausta järkevästi. Myös kiire on tuottanut vaikeuksia.
     **Mitä teen seuraavaksi?**
-Laitan testauksen kuntoon ja testaan, ettei ohjelmaan ole jäänyt mitään bugeja. Laitan kommentit kuntoon, kommenteista riippuen hion ehkä vielä rakenteen paremmaksi. Korvaan kuviolista-luokan tulosrakenteen omalla toteutuksella, mahdollisesti vielä toteuttamalla päätöspuun.
+Laitan testauksen kuntoon ja testaan, ettei ohjelmaan ole jäänyt mitään bugeja. Laitan kommentit kuntoon, kommenteista riippuen hion ehkä vielä rakenteen paremmaksi. Varmaankin teen ainakin käyttöliittymäluokan, jotta mainista tulee vielä pienempi. Korvaan kuviolista-luokan tulosrakenteen omalla toteutuksella, mahdollisesti vielä toteuttamalla päätöspuun.

@@ -8,4 +8,6 @@ Toisissa taktiikkametodeissa "menestyksenPerusteella" ja "vastustajaParas" on k�
 
 Tuloslista-luokan tehtävä on kirjata pelien tulokset ylös. Sen aikavaativuus on vakio, sillä se tallettaa joka kierrokselta aina samanlaiset tiedot. Sen "lisaaSiirto"-metodin tilavaativuus on kuitenkin luokkaa O(2n), sillä sen kaksi listaa kasvavat aina suhteessa pelattujen pelien määrään.
 
+Viidennellä viikolla loin Linkedlist-luokan, joka on taaksepäin linkitetty lista. Avuksi tein alkioluokan. Se tuottaa alkioita, joilla on arvo ja tieto edellisestä. Listaluokan toteutuksen vuoksi jouduin muuttamaan laskennassa käytettyjen siirto- ja voittotietojen koodauksen pääosassa int-tyyppisiksi String-tyyppisten sijaan. Alunperinkin olisi kannattanut toimia näin ja käyttää String-muotoa vasta tulostuksessa. Listarakenteella sain korvattua kaikki yksiulotteiset listat ja sain käytettyä sitä kätevästi eri tarkoituksiin.
+
 

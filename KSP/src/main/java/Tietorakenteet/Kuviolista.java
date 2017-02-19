@@ -22,9 +22,7 @@ public class Kuviolista{
 	*/
 
 	public void talletaKuvio(Tuloslista lista){
-            
 		int mones = lista.size();
-
 		Linklist teka = lista.getTulos(2);
 		Linklist ttoka = lista.getTulos(1);
 		Linklist tkolmas = lista.getTulos(0);

@@ -10,4 +10,4 @@ Kuvassa näkyy pelin testausta manuaalisesti. Tulosteet "eka" ja "toka" ovat tun
 
 *Suorituskykytestaus*
 
-Pelasin KSP:tä, ottaen ylös TiraLabran wikissä ehdotetulla tekniikalla aikoja toistuvatKuviot-operaation suorituksesta. Suoritusaika pysyi kokoajan 0ms tai 1ms.
+Pelasin KSP:tä, ottaen ylös TiraLabran wikissä ehdotetulla tekniikalla aikoja toistuvatKuviot-operaation suorituksesta. Algoritmit käyttivät pääsääntöisesti aikaa 0ms. Tekoälyn toistuvatKuviot kesti 1ms ja joskus satunnaisesti 2ms. Sen käyttämä aika ei kuitenkaan kasva vaikka pelien määrä kasvaisi. Kokeilin myös vastustajanParas-metodin viemää aika. Se oli aluksi 0ms. Satojen pelien jälkeen se alkoi olemaan suuruusluokkaa 1ms. Metodi käy läpi kaikki tulokset, joten sen aikavaativuus kasvaakin suhteessa tuloslistan kokoon. Kuitenkin vain lineaarisestin, joten ongelmia tuskin tulee jos ei käytä jossakin pitkissä miljoonien siirtojen marathon-peleissä.
