@@ -1,131 +1,141 @@
 package KSPapp;
+
 import Tietorakenteet.*;
 import Apulogiikka.*;
-public class Tekoaly{
 
-	/*
+public class Tekoaly {
+
+    /*
 	*Alustetaan tarpeellisia muuttujia
-	*/
-	private String konesiirto="Paperi";	
-	private final Tuloslista pelit;
+     */
+    private String konesiirto = "Paperi";
+    private final Tuloslista pelit;
 
-	private String taktiikka = "menestynein";
-	private final Kuviolista kuviolista;
+    private String taktiikka = "menestynein";
+    private final Kuviolista kuviolista;
     private final Muuntaja m = new Muuntaja();
     private final Tulospalvelu tulospalvelu = new Tulospalvelu();
-	
-	/*
-	*Konstruktori
-	*/
-	public Tekoaly(Tuloslista pelit){
-		this.pelit=pelit;
-        this.kuviolista = new Kuviolista(99);
-	}
 
-	/*
+    /*
+	*Konstruktori
+     */
+    public Tekoaly(Tuloslista pelit) {
+        this.pelit = pelit;
+        this.kuviolista = new Kuviolista(99);
+    }
+
+    /*
 	*Metodi, joka antaa siirron riippuen taktiikasta 
 	* ja vaihtaa taktiikkaa, jos siltä tuntuu
-	*/
-	public String getSiirto(){
-		if (pelit.size()>2){
-                	kuviolista.talletaKuvio(pelit);
-		}
-		if (pelit.size() > 9){
-			konesiirto = toistuvatKuviot();
-		}else if(taktiikka.equals("menestynein")){
-			konesiirto = menestyksenPerusteella();
-			if(pelit.size() > 4){
-				vaihdaTaktiikka("vastustajan paras");	
-			}
-		}else if(taktiikka.equals("vastustajan paras")){
-			konesiirto = vastustajanParas();
-		}else if(taktiikka.equals("toistuvat kuviot")){
-			konesiirto = toistuvatKuviot();
-		}
-		
-		return konesiirto;	
-	}
-	
-	public void vaihdaTaktiikka(String uusi){
-		taktiikka=uusi;
-	}
-	
-	/*
+     */
+    public String getSiirto() {
+        if (pelit.size() > 2) {
+            kuviolista.talletaKuvio(pelit);
+        }
+        if (pelit.size() > 9) {
+            konesiirto = toistuvatKuviot();
+        } else if (taktiikka.equals("menestynein")) {
+            konesiirto = menestyksenPerusteella();
+            if (pelit.size() > 4) {
+                vaihdaTaktiikka("vastustajan paras");
+            }
+        } else if (taktiikka.equals("vastustajan paras")) {
+            konesiirto = vastustajanParas();
+        } else if (taktiikka.equals("toistuvat kuviot")) {
+            konesiirto = toistuvatKuviot();
+        }
+
+        return konesiirto;
+    }
+
+    public void vaihdaTaktiikka(String uusi) {
+        taktiikka = uusi;
+    }
+
+    /*
 	*Metodi, joka valitsee siirroksi tähän asti koneen parhaiten 
 	* menestyneen siirron, ottaen huomioon voitot ja häviöt
-	*/
-	public String menestyksenPerusteella(){
-		int kivet=0;
-		int sakset=0;
-		int paperit=0;
-		String isoin = "Paperi";
-		for(int i=0; i<pelit.size(); i++){
+     */
+    public String menestyksenPerusteella() {
+        int kivet = 0;
+        int sakset = 0;
+        int paperit = 0;
+        String isoin = "Paperi";
+        for (int i = 0; i < pelit.size(); i++) {
 
-			Linklist tulos = pelit.getTulos(i);
-			
-			int ksiirto=tulos.getVika().getArvo();
-			int voitto=tulos.getAlkio(3).getArvo();
+            Linklist tulos = pelit.getTulos(i);
 
+            int ksiirto = tulos.getVika().getArvo();
+            int voitto = tulos.getAlkio(2).getArvo();
 
-			if(voitto==1){
-				if(ksiirto==2){
-					paperit++;
-				}else if(ksiirto==0){
-					kivet++;
-				}else if(ksiirto==1){
-					sakset++;
-				}
-			}else if(voitto==0){
-				if(ksiirto==1){
-					sakset--;
-				}else if(ksiirto==2){
-					paperit--;
-				}else if(ksiirto==0){
-					kivet--;
-				}
-			}
-		}
-		if(kivet>paperit){
-			isoin = "Kivi";
-			paperit=kivet;
-		}if(sakset>paperit){
-			isoin = "Sakset";
-		}
-		return isoin;
-	}
-	/*
+            if (voitto == 1) {
+                if (ksiirto == 2) {
+                    paperit++;
+                } else if (ksiirto == 0) {
+                    kivet++;
+                } else if (ksiirto == 1) {
+                    sakset++;
+                }
+            } else if (voitto == 0) {
+                if (ksiirto == 1) {
+                    sakset--;
+                } else if (ksiirto == 2) {
+                    paperit--;
+                } else if (ksiirto == 0) {
+                    kivet--;
+                }
+            }
+        }
+        if (kivet > paperit) {
+            isoin = "Kivi";
+            paperit = kivet;
+        }
+        if (sakset > paperit) {
+            isoin = "Sakset";
+        }
+        return isoin;
+    }
+
+    /*
 	*Taktiikkaa, joka pelaa vastustajan menestyneimmällä
-	*/
-	public String vastustajanParas(){
-		int kivet=0;
-		int sakset=0;
-		int paperit=0;
-		String isoin = "Paperi";
-		for(int i=0; i<pelit.size(); i++){
+     */
+    public String vastustajanParas() {
+        int kivet = 0;
+        int sakset = 0;
+        int paperit = 0;
+        String isoin = "Paperi";
+        for (int i = 0; i < pelit.size(); i++) {
 
-			Linklist tulos = pelit.getTulos(i);
-			int siirto=tulos.getVika().getEdellinen().getArvo();
-			int voitto=tulos.getVika().getEdellinen().getEdellinen().getArvo();
-			if(voitto==0){
-				if(siirto==0){
-					kivet++;
-				}else if(siirto==1){
-					sakset++;
-				}else if(siirto==2){
-					paperit++;
-				}
-			}
-		}
-		if(kivet>paperit){
-			isoin = "Kivi";
-			paperit=kivet;
-		}if(sakset>paperit){
-			isoin = "Sakset";
-		}
-		return isoin;
-	}
+            Linklist tulos = pelit.getTulos(i);
+            int siirto = tulos.getVika().getEdellinen().getArvo();
+            int voitto = tulos.getVika().getEdellinen().getEdellinen().getArvo();
+            if (voitto == 0) {
+                switch (siirto) {
+                    case 0:
+                        kivet++;
+                        break;
+                    case 1:
+                        sakset++;
+                        break;
+                    case 2:
+                        paperit++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        if (kivet > paperit) {
+            isoin = "Kivi";
+            paperit = kivet;
+        }
+        if (sakset > paperit) {
+            isoin = "Sakset";
+        }
+        return isoin;
+    }
 
-	/*
+    /*
 	*Käy läpi vastustajan edellisiä siirtoja ja etsii niistä kolmen
 	*siirron pituisia toistuvia kuvioita.
 	*Algoritmin on tarkoitus jäljitellä perinteistä tekoälyn palauteoppimisen tapaista
@@ -138,45 +148,43 @@ public class Tekoaly{
 	*vastustajan
 	*siirtona pidetään aikaisemmin saman tilan voimassa olessa useiten käytettyä siirtoa ja 
 	*toiminnoksi valikoituu sen voittava siirto.
-	*/
-	public String toistuvatKuviot(){
-		int[][] alkutilat = tulospalvelu.getAlkutilat();
-		int[][] tilastot = kuviolista.getTilastot();
-		Linklist e = pelit.getTulos(2);
-		Linklist t = pelit.getTulos(1);
-		int eka=e.getAlkio(2).getArvo();
-		int toka=t.getAlkio(1).getArvo();
-		int alku = 0;
-		int i=0;
+     */
+    public String toistuvatKuviot() {
+        int[][] alkutilat = tulospalvelu.getAlkutilat();
+        int[][] tilastot = kuviolista.getTilastot();
+        Linklist e = pelit.getTulos(2);
+        Linklist t = pelit.getTulos(1);
+        int eka = e.getAlkio(2).getArvo();
+        int toka = t.getAlkio(1).getArvo();
+        int alku = 0;
+        int i = 0;
 
-		for (int[] rivi: alkutilat) {
-			if (rivi[0]==eka&&rivi[1]==toka){
-					alku = i;
-					break;
-				}
-			i++;
-		}
-		int todnak= 0;
-		int isoin= 0;
+        for (int[] rivi : alkutilat) {
+            if (rivi[0] == eka && rivi[1] == toka) {
+                alku = i;
+                break;
+            }
+            i++;
+        }
+        int todnak = 0;
+        int isoin = 0;
 
-		for (int j = 0; j<3; j++) {
-			int maara =tilastot[alku][j];
-			if(maara>isoin){
-				isoin=maara;
-				todnak=j;
-			}
-		}
-		return m.vastakkainen(m.muutaSanaksi(todnak));
+        for (int j = 0; j < 3; j++) {
+            int maara = tilastot[alku][j];
+            if (maara > isoin) {
+                isoin = maara;
+                todnak = j;
+            }
+        }
+        return m.vastakkainen(m.muutaSanaksi(todnak));
 
-	}
+    }
 
-	
-	/*
+    /*
 	 * palauttaa käytössä olevan taktiikan
-	 */
-	 public String getTaktiikka(){
-		return taktiikka;
-	 }
-	 
-	
+     */
+    public String getTaktiikka() {
+        return taktiikka;
+    }
+
 }
