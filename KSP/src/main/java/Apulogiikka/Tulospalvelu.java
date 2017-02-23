@@ -108,9 +108,29 @@ public class Tulospalvelu {
     }
 
     /*sisältää kaikki kahden siirron yhdistelmät*/
-    public int[][] getAlkutilat() {
-        int[][] alkutilat = {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}, {2, 0}, {2, 1}, {2, 2}};
-        return alkutilat;
+ //   public int[][] getAlkutilat() {
+ //       int[][] alkutilat = {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}, {2, 0}, {2, 1}, {2, 2}};
+ //       return alkutilat;
+ //   }
+    public Solmu alustaAlkutilat(Solmu s){
+        Solmu kivi = new Solmu(0,null,null,null,null);
+        Solmu sakset = new Solmu(1,null,null,null,null);
+        Solmu paperi = new Solmu(2,null,null,null,null);
+        s.setLapsi1(kivi);
+        s.setLapsi2(sakset);
+        s.setLapsi3(paperi);
+        return s;
+    }
+    public Siirtopuu getAlkutilat(){
+        Solmu kivi = new Solmu(0,null,null,null,null);
+        Solmu sakset = new Solmu(1,null,null,null,null);
+        Solmu paperi = new Solmu(2,null,null,null,null);
+        kivi = alustaAlkutilat(kivi);
+        sakset = alustaAlkutilat(sakset);
+        paperi = alustaAlkutilat(paperi);
+        Solmu juuri = new Solmu (-1,kivi,sakset,paperi,null);
+        Siirtopuu p = new Siirtopuu(juuri);
+        return p;
     }
 
 }

@@ -35,7 +35,7 @@ public class Kuviolista {
             int i = 0;
             int eka = e.getArvo();
             int toka = t.getArvo();
-            int kolmas = k.getArvo();;
+            int kolmas = k.getArvo();
             int[][] alkutilat = tulospalvelu.getAlkutilat();
             for (int[] rivi : alkutilat) {
 
@@ -47,6 +47,27 @@ public class Kuviolista {
             }
         }
 
+    }
+    
+        public Solmu getParas(Siirtopuu p, int siirto1,int siirto2){
+        p.osoitin=p.getJuuri();
+        p.siirraOsoitin(siirto1);
+        p.siirraOsoitin(siirto2);
+ 
+        int kivi=p.osoitin.getLapsi1().getArvo();
+        int sakset=p.osoitin.getLapsi2().getArvo();
+        int paperi=p.osoitin.getLapsi3().getArvo();
+        Solmu solmu=p.osoitin.getLapsi1();
+        if (sakset>kivi&&sakset>paperi){
+            p.osoitin=p.getJuuri();
+            return solmu.getLapsi2();
+        }
+        if(paperi>kivi&&paperi>sakset){
+            p.osoitin=p.getJuuri();
+            return solmu.getLapsi3();
+        }
+        p.osoitin=p.getJuuri();
+        return solmu.getLapsi1();
     }
 
     public int[][] getTilastot() {
