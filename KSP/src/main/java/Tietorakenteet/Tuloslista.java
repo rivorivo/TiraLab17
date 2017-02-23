@@ -12,7 +12,6 @@ public class Tuloslista {
     }
 
     public void lisaaPeli(int voittaja, int siirto, int konesiirto) {
-        System.out.println("Voittaja ="+voittaja);
         voittolista.uusiAlkio(voittaja);
         siirtolista.uusiAlkio(siirto);
         konesiirtolista.uusiAlkio(konesiirto);

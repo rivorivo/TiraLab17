@@ -42,19 +42,25 @@ public class Solmu {
         return lapsi3;
     }
     
-    public Solmu getLapsi(Solmu s, int siirto){
+    public Solmu getLapsi(int siirto){
           switch (siirto) {
             case 0:
-                return s.getLapsi1();
+                return lapsi1;
             case 1:
-                return s.getLapsi2();
+                return lapsi2;
             default:
-                return s.getLapsi3();
-        } 
+                return lapsi3;
+          } 
     }
 
     public Solmu getVanhempi() {
         return vanhempi;
+    }
+    
+    public void lisaaLapset(){
+                lapsi1=new Solmu(0,null,null,null,lapsi1);
+                lapsi2=new Solmu(0,null,null,null,lapsi2);
+                lapsi3=new Solmu(0,null,null,null,lapsi3);
     }
 
     public void setArvo(int arvo) {

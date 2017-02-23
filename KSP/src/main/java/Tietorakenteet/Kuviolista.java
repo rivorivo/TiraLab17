@@ -1,21 +1,11 @@
 package Tietorakenteet;
 
-import Apulogiikka.*;
-
 public class Kuviolista {
 
-    private final int[][] tilastot;
+    private final Siirtopuu tilastopuu = alustaTilastopuu();
     Linklist lista1 = new Linklist();
     Linklist lista2 = new Linklist();
     Linklist lista3 = new Linklist();
-
-    Muuntaja m = new Muuntaja();
-    Tulospalvelu tulospalvelu = new Tulospalvelu();
-
-    public Kuviolista(int koko) {
-        this.tilastot = new int[9][koko];
-
-    }
 
     /*
 	*Hakee tuloslistasta vastustajan kahden edellisen kierroksen siirrot
@@ -32,45 +22,55 @@ public class Kuviolista {
         Alkio k = tkolmas.getAlkio(1);
 
         if (mones > 2) {
-            int i = 0;
+
             int eka = e.getArvo();
             int toka = t.getArvo();
             int kolmas = k.getArvo();
-            int[][] alkutilat = tulospalvelu.getAlkutilat();
-            for (int[] rivi : alkutilat) {
-
-                if (rivi[0] == eka && rivi[1] == toka) {
-                    int vanha = tilastot[i][kolmas];
-                    tilastot[i][kolmas] = vanha + 1;
-                }
-                i++;
-            }
+            
+            tilastopuu.siirraOsoitin(eka);
+            tilastopuu.siirraOsoitin(toka);
+            tilastopuu.siirraOsoitin(kolmas);
+            tilastopuu.kasvataArvoa(tilastopuu.getJuuri());
         }
 
     }
     
-        public Solmu getParas(Siirtopuu p, int siirto1,int siirto2){
-        p.osoitin=p.getJuuri();
-        p.siirraOsoitin(siirto1);
-        p.siirraOsoitin(siirto2);
- 
-        int kivi=p.osoitin.getLapsi1().getArvo();
-        int sakset=p.osoitin.getLapsi2().getArvo();
-        int paperi=p.osoitin.getLapsi3().getArvo();
-        Solmu solmu=p.osoitin.getLapsi1();
+    public String getParas(int siirto1,int siirto2){
+        tilastopuu.siirraOsoitin(siirto1);
+        tilastopuu.siirraOsoitin(siirto2);
+        
+        int kivi=tilastopuu.osoitin.getLapsi1().getArvo();
+        int sakset=tilastopuu.osoitin.getLapsi2().getArvo();
+        int paperi=tilastopuu.osoitin.getLapsi3().getArvo();
+
         if (sakset>kivi&&sakset>paperi){
-            p.osoitin=p.getJuuri();
-            return solmu.getLapsi2();
+            tilastopuu.osoitin=tilastopuu.getJuuri();
+            return "Sakset";
         }
         if(paperi>kivi&&paperi>sakset){
-            p.osoitin=p.getJuuri();
-            return solmu.getLapsi3();
+            tilastopuu.osoitin=tilastopuu.getJuuri();
+            return "Paperi";
         }
-        p.osoitin=p.getJuuri();
-        return solmu.getLapsi1();
+        tilastopuu.osoitin=tilastopuu.getJuuri();
+        return "Kivi";
     }
-
-    public int[][] getTilastot() {
-        return tilastot;
+        
+    public Siirtopuu alustaTilastopuu(){
+        Solmu kivi = new Solmu(0,null,null,null,null);
+        Solmu sakset = new Solmu(0,null,null,null,null);
+        Solmu paperi = new Solmu(0,null,null,null,null);
+        kivi.lisaaLapset();
+        sakset.lisaaLapset();
+        paperi.lisaaLapset();
+        
+        for (int i = 0; i < 3; i++) {
+            kivi.getLapsi(i).lisaaLapset();
+            sakset.getLapsi(i).lisaaLapset();
+            paperi.getLapsi(i).lisaaLapset();
+        }
+        
+        Solmu juuri = new Solmu (-1,kivi,sakset,paperi,null);
+        Siirtopuu p = new Siirtopuu(juuri);
+        return p;
     }
 }

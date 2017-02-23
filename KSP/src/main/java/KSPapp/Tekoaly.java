@@ -21,7 +21,7 @@ public class Tekoaly {
      */
     public Tekoaly(Tuloslista pelit) {
         this.pelit = pelit;
-        this.kuviolista = new Kuviolista(99);
+        this.kuviolista = new Kuviolista();
     }
 
     /*
@@ -69,20 +69,32 @@ public class Tekoaly {
             int voitto = tulos.getAlkio(2).getArvo();
 
             if (voitto == 1) {
-                if (ksiirto == 2) {
-                    paperit++;
-                } else if (ksiirto == 0) {
-                    kivet++;
-                } else if (ksiirto == 1) {
-                    sakset++;
+                switch (ksiirto) {
+                    case 2:
+                        paperit++;
+                        break;
+                    case 0:
+                        kivet++;
+                        break;
+                    case 1:
+                        sakset++;
+                        break;
+                    default:
+                        break;
                 }
             } else if (voitto == 0) {
-                if (ksiirto == 1) {
-                    sakset--;
-                } else if (ksiirto == 2) {
-                    paperit--;
-                } else if (ksiirto == 0) {
-                    kivet--;
+                switch (ksiirto) {
+                    case 1:
+                        sakset--;
+                        break;
+                    case 2:
+                        paperit--;
+                        break;
+                    case 0:
+                        kivet--;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -150,34 +162,14 @@ public class Tekoaly {
 	*toiminnoksi valikoituu sen voittava siirto.
      */
     public String toistuvatKuviot() {
-        int[][] alkutilat = tulospalvelu.getAlkutilat();
-        int[][] tilastot = kuviolista.getTilastot();
+
         Linklist e = pelit.getTulos(2);
         Linklist t = pelit.getTulos(1);
         int eka = e.getAlkio(2).getArvo();
         int toka = t.getAlkio(1).getArvo();
-        int alku = 0;
-        int i = 0;
-
-        for (int[] rivi : alkutilat) {
-            if (rivi[0] == eka && rivi[1] == toka) {
-                alku = i;
-                break;
-            }
-            i++;
-        }
-        int todnak = 0;
-        int isoin = 0;
-
-        for (int j = 0; j < 3; j++) {
-            int maara = tilastot[alku][j];
-            if (maara > isoin) {
-                isoin = maara;
-                todnak = j;
-            }
-        }
-        return m.vastakkainen(m.muutaSanaksi(todnak));
-
+        String paras = kuviolista.getParas(eka, toka);
+            
+        return m.vastakkainen(paras);
     }
 
     /*

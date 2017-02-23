@@ -60,17 +60,17 @@ public class Siirtopuu {
         } 
     }
     
-    public void muutaArvoa(Solmu s){
+    public void kasvataArvoa(Solmu s){
         if(s==null){
             
-        }else if(s==osoitin){
+        }else if(osoitin==s){
             osoitin=juuri;
             int uusi =s.getArvo()+1;
             s.setArvo(uusi);
         }else{
-            muutaArvoa(s.getLapsi1());
-            muutaArvoa(s.getLapsi2());
-            muutaArvoa(s.getLapsi3());
+            kasvataArvoa(s.getLapsi1());
+            kasvataArvoa(s.getLapsi2());
+            kasvataArvoa(s.getLapsi3());
         }
         
     }
