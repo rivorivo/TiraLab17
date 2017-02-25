@@ -11,8 +11,8 @@ package Tietorakenteet;
  */
 public class Siirtopuu {
 
-    Solmu juuri;
-    Solmu osoitin;
+    public Solmu juuri;
+    public Solmu osoitin;
 
     public Siirtopuu(Solmu juuri) {
         this.juuri = juuri;

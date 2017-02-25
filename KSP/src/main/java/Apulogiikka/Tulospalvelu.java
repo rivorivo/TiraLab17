@@ -1,6 +1,7 @@
 package Apulogiikka;
 
 import Tietorakenteet.*;
+import Tallentajat.Tuloslista;
 
 public class Tulospalvelu {
 

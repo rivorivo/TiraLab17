@@ -1,7 +1,8 @@
 package KSPapp;
 
-import Tietorakenteet.*;
+import Tallentajat.*;
 import Apulogiikka.*;
+import Tietorakenteet.*;
 
 public class Tekoaly {
 

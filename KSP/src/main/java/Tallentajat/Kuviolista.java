@@ -1,11 +1,9 @@
-package Tietorakenteet;
+package Tallentajat;
+import Tietorakenteet.*;
 
 public class Kuviolista {
 
     private final Siirtopuu tilastopuu = alustaTilastopuu();
-    Linklist lista1 = new Linklist();
-    Linklist lista2 = new Linklist();
-    Linklist lista3 = new Linklist();
 
     /*
 	*Hakee tuloslistasta vastustajan kahden edellisen kierroksen siirrot

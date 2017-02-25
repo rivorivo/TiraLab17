@@ -1,10 +1,12 @@
-package Tietorakenteet;
+package Tallentajat;
+import Tietorakenteet.*;
 
 public class Tuloslista {
 
     private final Linklist siirtolista;
     private final Linklist voittolista;
     private final Linklist konesiirtolista;
+    
     public Tuloslista() {
         siirtolista = new Linklist();
         voittolista = new Linklist();

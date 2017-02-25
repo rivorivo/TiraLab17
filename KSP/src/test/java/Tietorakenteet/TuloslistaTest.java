@@ -1,4 +1,5 @@
-package Tietorakenteet;
+package Tallentajat;
+import Tietorakenteet.*;
 
 import junit.framework.Assert;
 import org.junit.Test;

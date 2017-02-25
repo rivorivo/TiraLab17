@@ -1,6 +1,6 @@
 package KSPapp;
 
-import Tietorakenteet.*;
+import Tallentajat.*;
 import junit.framework.Assert;
 import org.junit.Test;
 

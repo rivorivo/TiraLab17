@@ -2,6 +2,7 @@ package KSPapp;
 
 import Tietorakenteet.*;
 import Apulogiikka.*;
+import Tallentajat.*;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
