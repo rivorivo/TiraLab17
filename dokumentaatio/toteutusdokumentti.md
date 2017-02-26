@@ -10,4 +10,6 @@ Tuloslista-luokan tehtävä on kirjata pelien tulokset ylös. Sen aikavaativuus 
 
 Viidennellä viikolla loin Linkedlist-luokan, joka on taaksepäin linkitetty lista. Avuksi tein alkioluokan. Se tuottaa alkioita, joilla on arvo ja tieto edellisestä. Listaluokan toteutuksen vuoksi jouduin muuttamaan laskennassa käytettyjen siirto- ja voittotietojen koodauksen pääosassa int-tyyppisiksi String-tyyppisten sijaan. Alunperinkin olisi kannattanut toimia näin ja käyttää String-muotoa vasta tulostuksessa. Listarakenteella sain korvattua kaikki yksiulotteiset listat ja sain käytettyä sitä kätevästi eri tarkoituksiin.
 
+Kaksiulotteiset tietorakenteet korvasin Siirtopuu-nimisellä luokalla, joka käyttää Solmu-luokan olioita. Rakenne on puumainen rakenne, jonka solmuilla on kolme (siirtoja 'kivi, sakset,paperi' kuvaavaa) lasta. Rakennetta käytetään Kuviolista-luokassa peräkkäisten siirtokuvioiden tallentamiseen.
+
 

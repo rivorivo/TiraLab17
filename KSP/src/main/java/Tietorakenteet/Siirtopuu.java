@@ -22,6 +22,10 @@ public class Siirtopuu {
     public Solmu getJuuri() {
         return juuri;
     }
+
+    public Solmu getOsoitin(){
+        return osoitin;
+    }
    
     /**
      *
