@@ -13,23 +13,28 @@ public class Siirtopuu {
 
     public Solmu juuri;
     public Solmu osoitin;
-
+    /*
+    *konstruktori @param Solmu juuri 
+    *parametrina puun juuri
+    */
     public Siirtopuu(Solmu juuri) {
         this.juuri = juuri;
         this.osoitin=juuri;
     }
-
+    /*palauttaa juuren*/
     public Solmu getJuuri() {
         return juuri;
     }
-
+    /*palauttaa solmun, jonka kohdalla osoitin on*/
     public Solmu getOsoitin(){
         return osoitin;
     }
    
     /**
-     *
+     *laskee parametrina annetun solmun korkeuden
+     *käymälllä puun rekursiivisesti läpi
      * @param s
+     *palauttaa -1, jos solmu null
      * @return
      */
     public int korkeus(Solmu s){
@@ -50,6 +55,10 @@ public class Siirtopuu {
        return k+1; 
     }
 
+    /*
+    *siirtää osoittimen yhen tason alaspäin puussa
+    *@param int siirto kertoo mihin lapseen
+    */
     public void siirraOsoitin(int siirto){
         switch (siirto) {
             case 0:
@@ -63,7 +72,10 @@ public class Siirtopuu {
                 break;
         } 
     }
-    
+    /*
+    *kasvattaa yhdellä @param Solmu s juurena olevan puun
+    *alkiota, johon osoitin osoittaa
+    */
     public void kasvataArvoa(Solmu s){
         if(s==null){
             

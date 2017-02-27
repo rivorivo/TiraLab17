@@ -17,7 +17,11 @@ public class Solmu {
     Solmu lapsi2;
     Solmu lapsi3;
     Solmu vanhempi;
-
+    /*
+    *@param int arvo
+    *@params lapsi1,lapsi2,lapsi3, vanhempi
+    *luo solmun, jolla arvo ja tieto lapsista ja vanhemmasta
+    */
     public Solmu(int arvo, Solmu lapsi1, Solmu lapsi2, Solmu lapsi3, Solmu vanhempi) {
         this.arvo = arvo;
         this.lapsi1 = lapsi1;
@@ -26,6 +30,9 @@ public class Solmu {
         this.vanhempi = vanhempi;
     }
 
+    /*
+    *palauttavat arvot ja tietyt lapset ja vanhemman
+    */
     public int getArvo() {
         return arvo;
     }
@@ -42,6 +49,12 @@ public class Solmu {
         return lapsi3;
     }
     
+    public Solmu getVanhempi() {
+        return vanhempi;
+    }
+    /*
+    *palauttaa määrätyn @param int siirto lapsen
+    */
     public Solmu getLapsi(int siirto){
           switch (siirto) {
             case 0:
@@ -53,16 +66,16 @@ public class Solmu {
           } 
     }
 
-    public Solmu getVanhempi() {
-        return vanhempi;
-    }
-    
+    /*
+    *lisaa solmulle kolme lasta
+    */
     public void lisaaLapset(){
                 lapsi1=new Solmu(0,null,null,null,lapsi1);
                 lapsi2=new Solmu(0,null,null,null,lapsi2);
                 lapsi3=new Solmu(0,null,null,null,lapsi3);
     }
 
+    /*Asettavat arvot ja lapset ja vanhemman*/
     public void setArvo(int arvo) {
         this.arvo = arvo;
     }

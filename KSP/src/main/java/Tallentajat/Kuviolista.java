@@ -32,7 +32,11 @@ public class Kuviolista {
         }
 
     }
-    
+    /*
+    * etsii historiasta kahden parametrina annetun siirron
+    *@params siirto1,siirto2 jälkeen tulleista siirroista eniten
+    *esiintyneet
+    */
     public String getParas(int siirto1,int siirto2){
         tilastopuu.siirraOsoitin(siirto1);
         tilastopuu.siirraOsoitin(siirto2);
@@ -52,7 +56,11 @@ public class Kuviolista {
         tilastopuu.osoitin=tilastopuu.getJuuri();
         return "Kivi";
     }
-        
+
+    /*
+    *alustaa siirtopuu-tyyppisen muuttujan ja täyttää sen
+    *kolmen pituisilla kolmen siirron yhdistelmillä 3³
+    */    
     public Siirtopuu alustaTilastopuu(){
         Solmu kivi = new Solmu(0,null,null,null,null);
         Solmu sakset = new Solmu(0,null,null,null,null);
