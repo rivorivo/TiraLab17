@@ -12,7 +12,7 @@ public class Tulospalvelu {
         int voitot = 0;
         int pituus = pelit.size();
         for (int i = 0; i < pituus; i++) {
-            Linklist tulos = pelit.getTulos(i);            
+            Linklist tulos = pelit.getTulos(i);
             Alkio voittaja = tulos.getAlkio(2);
             int v = voittaja.getArvo();
             if (v == 0) {
@@ -56,39 +56,56 @@ public class Tulospalvelu {
 	*
      */
     public String getVoittaja(String siirto, String konesiirto) {
-        System.out.println("");
-        System.out.println(siirto + " - " + konesiirto);
-        System.out.println("");
+
         String voittaja = "tasapeli";
         if (siirto.equals(konesiirto)) {
-            System.out.println("Sama siirto! Tasapeli.");
         } else if (siirto.equals("Kivi")) {
             if (konesiirto.equals("Sakset")) {
-                System.out.println("Kivi murskaa sakset! Voitit!");
                 voittaja = "pelaaja";
             } else if (konesiirto.equals("Paperi")) {
-                System.out.println("Paperi peittää kiven! Hävisit.");
                 voittaja = "kone";
             }
         } else if (siirto.equals("Sakset")) {
             if (konesiirto.equals("Kivi")) {
-                System.out.println("Kivi murskaa sakset! Hävisit.");
                 voittaja = "kone";
             } else if (konesiirto.equals("Paperi")) {
-                System.out.println("Sakset leikkaavat paperin! Voitit!");
                 voittaja = "pelaaja";
             }
         } else if (siirto.equals("Paperi")) {
             if (konesiirto.equals("Kivi")) {
-                System.out.println("Paperi peittää kiven! Voitit!");
                 voittaja = "pelaaja";
             } else if (konesiirto.equals("Sakset")) {
-                System.out.println("Sakset leikkaavat paperin! Hävisit.");
                 voittaja = "kone";
             }
         }
-        System.out.println("");
         return voittaja;
+    }
+
+    public String getKierrosTulos(String siirto, String konesiirto) {
+
+        String kierros = "";
+        if (siirto.equals(konesiirto)) {
+            kierros = siirto + " - " + konesiirto + "     " + "Sama siirto! Tasapeli.";
+        } else if (siirto.equals("Kivi")) {
+            if (konesiirto.equals("Sakset")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Kivi murskaa sakset! Voitit!";
+            } else if (konesiirto.equals("Paperi")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Paperi peittää kiven! Hävisit.";
+            }
+        } else if (siirto.equals("Sakset")) {
+            if (konesiirto.equals("Kivi")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Kivi murskaa sakset! Hävisit.";
+            } else if (konesiirto.equals("Paperi")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Sakset leikkaavat paperin! Voitit!";
+            }
+        } else if (siirto.equals("Paperi")) {
+            if (konesiirto.equals("Kivi")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Paperi peittää kiven! Voitit!";
+            } else if (konesiirto.equals("Sakset")) {
+                kierros = siirto + " - " + konesiirto + "     " + "Sakset leikkaavat paperin! Hävisit.";
+            }
+        }
+        return kierros;
     }
 
     /*laskee ja tulosta koko pelin voittajan*/

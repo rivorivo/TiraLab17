@@ -1,4 +1,5 @@
 package Tallentajat;
+
 import Tietorakenteet.*;
 
 public class Kuviolista {
@@ -24,7 +25,7 @@ public class Kuviolista {
             int eka = e.getArvo();
             int toka = t.getArvo();
             int kolmas = k.getArvo();
-            
+
             tilastopuu.siirraOsoitin(eka);
             tilastopuu.siirraOsoitin(toka);
             tilastopuu.siirraOsoitin(kolmas);
@@ -32,50 +33,51 @@ public class Kuviolista {
         }
 
     }
+
     /*
     * etsii historiasta kahden parametrina annetun siirron
     *@params siirto1,siirto2 jälkeen tulleista siirroista eniten
     *esiintyneet
-    */
-    public String getParas(int siirto1,int siirto2){
+     */
+    public String getParas(int siirto1, int siirto2) {
         tilastopuu.siirraOsoitin(siirto1);
         tilastopuu.siirraOsoitin(siirto2);
-        
-        int kivi=tilastopuu.osoitin.getLapsi1().getArvo();
-        int sakset=tilastopuu.osoitin.getLapsi2().getArvo();
-        int paperi=tilastopuu.osoitin.getLapsi3().getArvo();
 
-        if (sakset>kivi&&sakset>paperi){
-            tilastopuu.osoitin=tilastopuu.getJuuri();
+        int kivi = tilastopuu.osoitin.getLapsi1().getArvo();
+        int sakset = tilastopuu.osoitin.getLapsi2().getArvo();
+        int paperi = tilastopuu.osoitin.getLapsi3().getArvo();
+
+        if (sakset > kivi && sakset > paperi) {
+            tilastopuu.osoitin = tilastopuu.getJuuri();
             return "Sakset";
         }
-        if(paperi>kivi&&paperi>sakset){
-            tilastopuu.osoitin=tilastopuu.getJuuri();
+        if (paperi > kivi && paperi > sakset) {
+            tilastopuu.osoitin = tilastopuu.getJuuri();
             return "Paperi";
         }
-        tilastopuu.osoitin=tilastopuu.getJuuri();
+        tilastopuu.osoitin = tilastopuu.getJuuri();
         return "Kivi";
     }
 
     /*
     *alustaa siirtopuu-tyyppisen muuttujan ja täyttää sen
     *kolmen pituisilla kolmen siirron yhdistelmillä 3³
-    */    
-    public Siirtopuu alustaTilastopuu(){
-        Solmu kivi = new Solmu(0,null,null,null,null);
-        Solmu sakset = new Solmu(0,null,null,null,null);
-        Solmu paperi = new Solmu(0,null,null,null,null);
+     */
+    public Siirtopuu alustaTilastopuu() {
+        Solmu kivi = new Solmu(0, null, null, null, null);
+        Solmu sakset = new Solmu(0, null, null, null, null);
+        Solmu paperi = new Solmu(0, null, null, null, null);
         kivi.lisaaLapset();
         sakset.lisaaLapset();
         paperi.lisaaLapset();
-        
+
         for (int i = 0; i < 3; i++) {
             kivi.getLapsi(i).lisaaLapset();
             sakset.getLapsi(i).lisaaLapset();
             paperi.getLapsi(i).lisaaLapset();
         }
-        
-        Solmu juuri = new Solmu (-1,kivi,sakset,paperi,null);
+
+        Solmu juuri = new Solmu(-1, kivi, sakset, paperi, null);
         Siirtopuu p = new Siirtopuu(juuri);
         return p;
     }

@@ -169,7 +169,7 @@ public class Tekoaly {
         int eka = e.getAlkio(2).getArvo();
         int toka = t.getAlkio(1).getArvo();
         String paras = kuviolista.getParas(eka, toka);
-            
+
         return m.vastakkainen(paras);
     }
 
