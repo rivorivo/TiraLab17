@@ -15,8 +15,7 @@ public class Tekoaly {
     private String taktiikka = "menestynein";
     private final Kuviolista kuviolista;
     private final Muuntaja m = new Muuntaja();
-    private final Tulospalvelu tulospalvelu = new Tulospalvelu();
-
+    
     /*
 	*Konstruktori
      */
@@ -164,10 +163,12 @@ public class Tekoaly {
      */
     public String toistuvatKuviot() {
 
-        Linklist e = pelit.getTulos(2);
-        Linklist t = pelit.getTulos(1);
-        int eka = e.getAlkio(2).getArvo();
+        Linklist e = pelit.getTulos(1);
+        Linklist t = pelit.getTulos(0);
+        int eka = e.getAlkio(1).getArvo();
+        System.out.println(eka);
         int toka = t.getAlkio(1).getArvo();
+        System.out.println(toka);
         String paras = kuviolista.getParas(eka, toka);
 
         return m.vastakkainen(paras);
