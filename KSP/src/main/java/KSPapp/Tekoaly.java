@@ -166,9 +166,7 @@ public class Tekoaly {
         Linklist e = pelit.getTulos(1);
         Linklist t = pelit.getTulos(0);
         int eka = e.getAlkio(1).getArvo();
-        System.out.println(eka);
         int toka = t.getAlkio(1).getArvo();
-        System.out.println(toka);
         String paras = kuviolista.getParas(eka, toka);
 
         return m.vastakkainen(paras);
