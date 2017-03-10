@@ -12,4 +12,6 @@ Viidennellä viikolla loin Linkedlist-luokan, joka on taaksepäin linkitetty lis
 
 Kaksiulotteiset tietorakenteet korvasin Siirtopuu-nimisellä luokalla, joka käyttää Solmu-luokan olioita. Rakenne on puumainen rakenne, jonka solmuilla on kolme (siirtoja 'kivi, sakset,paperi' kuvaavaa) lasta. Rakennetta käytetään Kuviolista-luokassa peräkkäisten siirtokuvioiden tallentamiseen.
 
+Toteutin ohjelman käytettävyyttä parantaakseni lopuksi vielä yksinkertaisen graafisen käyttöliittymän. Käytin sen tekemiseen netbeansin GUI-generaattoria. Käyttöliittymä teki ohjelman käyttämisestä kevyempää ja varsinkin useamman peräkkäisen pelin pelaaminen ja empiirinen testaaminen helpottuivat.
+
 

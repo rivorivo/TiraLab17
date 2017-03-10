@@ -14,7 +14,9 @@ import javax.swing.JOptionPane;
 public class KSPUI extends javax.swing.JFrame {
 
     private Peli peli;
-
+    /**
+    *konstruktori
+    */
     public KSPUI() {
         initComponents();
         Siirtoikkuna.setVisible(false);
